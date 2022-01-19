@@ -74,12 +74,15 @@
 
 .flex-hor {
 	display: flex;
+	display: -webkit-flex;
 	flex-flow: row wrap;
+	-webkit-flex-flow: row wrap;
 }
 
 .flex-ver {
-	display: flex;
+	display: -webkit-flex;
 	flex-flow: column wrap;
+	-webkit-flex-flow: column wrap;
 }
 
 .matlab-syms {
