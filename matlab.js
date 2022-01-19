@@ -311,3 +311,15 @@ function elementToArray(e) {
 	
 	return tempArray;
 }
+
+function randomID() {
+	let id = 0;
+	
+	while (id == 0) {
+		id = Math.random() * Date.now();
+	}
+	
+	id = 'uef-random-id-' + Math.floor(id);
+	
+	return id;
+}
