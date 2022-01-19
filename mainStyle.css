@@ -1,0 +1,249 @@
+/*
+	Tämä tiedosto sisältää yleisiä
+	tyylittelyjä.
+	
+	Lisää uudet luokat ensin aakkosjärjestyksen
+	ja sitten tärkeysjärjestyksen mukaan.
+	
+	This is the base; used conversion 10px = 1em = 2%
+*/
+
+/*--- Classes ---*/
+
+.article-content {
+	display: block;
+	max-width: 800px;
+	margin: 0 auto;
+	float: none;
+	font-size: 110%;
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+.copy {
+	display: block;
+	width: 1em;
+	height: 1em;
+	position: absolute;
+	right: min(0.5em, 1%);
+	top: min(0.5em, 1%);
+	z-index: 100;
+}
+
+.copy-button,
+.copy-button-message
+{
+	display: block;
+	border-style: none;
+	height: 2em;
+	width: 2em;
+	background-image: url("https://digicampus.fi/pluginfile.php/823748/mod_resource/content/1.7976931348623157e+308/copy_icon_1.svg");
+	background-repeat:	no-repeat;
+	background-position: 100% 50%;
+	background-size: contain;
+	cursor: pointer;
+	position: absolute;
+	right: min(0.5em, 1%);
+	top: min(0.5em, 1%);
+	z-index: 100;
+}
+
+.copy-button-message {
+	display: none;
+	background-image: none;
+	width: 100%;
+	top: min(4em, 8%);
+	text-align: end;
+	word-wrap: normal;
+}
+
+.corollary,
+.definition,
+.lemma,
+.remark,
+.summary,
+.theorem
+{
+	display: block;
+	margin-left: 40px; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 3px solid khaki; 
+	padding: 8px; 
+	max-width: max-content; 
+	border-radius: 15px;
+	background-image: linear-gradient(to right, whitesmoke, whitesmoke, khaki);
+}
+
+.counterBox {
+	display: inline-block;
+	min-width: 20px;
+	margin-right: 10px;
+	text-align: right;
+}
+
+.definition {
+	border-color: sandybrown;
+	background-image: linear-gradient(to right, whitesmoke, whitesmoke, sandybrown);
+}
+
+.example,
+.exercise
+{
+	display: block;
+	margin-left: 40px;
+	border-left: 3px solid steelblue;
+	padding:8px
+}
+
+.exercise {
+	border-left-style: dashed;
+}
+
+.imp-term {
+	display: inline;
+	color: blue;
+	font-style: italic;
+}
+
+.proof {
+	display: block;
+	margin-left: 40px;
+	border: none;
+	border-left: 3px solid khaki;
+	padding:8px;
+}
+
+.remark {
+	border-color: lightcoral;
+	background-image: linear-gradient(to right, whitesmoke, whitesmoke, lightcoral);
+}
+
+.show {
+	display: block;
+}
+
+.solution,
+.solution-button-box,
+.solution-byhand,
+.solution-bymatlab {
+	display: block;
+	padding: 8px;
+	padding-left: 0px;
+}
+
+.solution-button-box {
+	display: flex;
+	flex-flow: row wrap;
+	flex: min(1em, 2%);
+	justify-content: space-left;
+}
+
+.solution-byhand-button,
+.solution-bymatlab-button
+{
+	display: inline-block;
+	background-color: whitesmoke;
+	border: 2px solid;
+	color: steelblue;
+	padding: 0.5em 0.5em;
+	margin: 0.5em;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1em;
+	border-radius: 3px;
+}
+
+.solution-byhand-button {
+	border-color: steelblue;
+}
+
+.solution-bymatlab-button {
+	border-color: forestgreen;
+}
+
+.solution-byhand-hidden,
+.solution-bymatlab-hidden {
+	display: none;
+}
+
+.summary { 
+	border-color: forestgreen;
+	background-image: linear-gradient(to right, whitesmoke, whitesmoke, forestgreen);
+}
+
+/*--- ELEMENTS ---*/
+
+f-list {
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 40px;
+}
+
+f-li {
+	display: block;
+	/*padding-left: 20px;*/
+	margin: 5px 5px 5px;
+	/*margin-left: 40px;*/
+	text-align: left;
+}
+
+/*--- PSEUDO ELEMENTS ---*/
+
+.solution-byhand::before,
+.solution-bymatlab::before,
+.corollary::before,
+.definition::before,
+.example::before,
+.exercise::before,
+.lemma::before,
+.remark::before,
+.summary::before,
+.theorem::before,
+.proof::before
+{
+	font-weight: bold;
+	padding-right: min(1em, 2%);
+}
+
+.solution-byhand::before,
+.solution-bymatlab::before {
+	content: 'Ratkaisu.';
+}
+
+.corollary::before {
+	content: 'Korollaari.';
+}
+
+.definition::before {
+	content: 'Määritelmä.';
+}
+
+.example::before {
+	content: 'Esimerkki.';
+}
+
+.exercise::before {
+	content: 'Tehtävä.';
+}
+
+.lemma::before {
+	content: 'Lemma.';
+}
+
+.proof::before {
+	content: 'Todistus.';
+}
+
+.remark::before {
+	content: 'Huomio.';
+}
+
+.summary::before {
+	content: 'Tiivistelmä.';
+}
+
+.theorem::before {
+	content: 'Lause.';
+}

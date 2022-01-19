@@ -1,0 +1,119 @@
+.matlab-code-block {
+	display: block;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #b3b3b3;
+	background: #f2f2f2;
+	padding: min(1em, 2%);					/*This is the base; used conversion 10px = 1em = 2%*/
+	width: 90%;
+	font-family: Courier New;
+	word-wrap: break-word;
+	position: relative;
+}
+
+.matlab-code-output {
+	display: block;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #b3b3b3;
+	padding-left: min(2.5em, 5%);
+	padding-top: min(1em, 2%);
+	width: 90%;
+	font-family: Courier New;
+}
+
+.matlab-comment, .matlab-comment-multi {
+	display: inline;
+	color: #228b22;
+}
+
+.matlab-comment-multi {
+	display: block;
+}
+
+.matlab-function-block {
+	display: block;
+	width: 90%;
+}
+
+.matlab-function, .matlab-function-end{
+	color: #0000ff;
+}
+
+.matlab-function-end {
+	padding-right: 0em;
+}
+
+.matlab-infotext {
+	color: gray;
+	font-size: smaller;
+	padding: 8px;
+	background-color: #f2f2f2;
+	border-radius: 5px 5px 0px 0px;
+	margin-top: 2px;
+}
+
+.matlab-matrix-table {
+	display: table;
+}
+
+.matlab-matrix-row {
+	display: table-row;
+}
+
+.matlab-matrix-column {
+	display: table-column;
+}
+
+.matlab-matrix-cell {
+	display: table-cell;
+	padding: min(0.5em, 1%);
+	word-break: unset;
+	word-break: keep-all;
+}
+
+.flex-hor {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.flex-ver {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.matlab-syms {
+	color: #e21dbf;
+}
+
+.matlab-tab-block {
+	display: block;
+	padding-left: min(2.5em, 5%);
+	width: 90%;
+}
+
+/*--- PSEUDO ELEMENTS ---*/
+
+.matlab-comment::before {
+	content: '%';
+}
+
+.matlab-comment-multi::before {
+	content: '%{';
+}
+
+.matlab-comment-multi::after {
+	content: '%}';
+}
+
+.matlab-function-block::after {
+	content: 'end';
+	color: #0000ff;
+}
+
+.matlab-function-block > .matlab-function-block,
+.matlab-function-block > .matlab-comment,
+.matlab-function-block > .matlab-comment-multi
+{
+	padding-left: min(2.5em, 5%);
+}
