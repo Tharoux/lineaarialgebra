@@ -1,7 +1,7 @@
 class MatlabCode extends HTMLElement {
 	
 	render() {
-		this.classList.add("matlab-code-block");
+		this.classList.add('matlab-code-block');
 		
 		let infoText = document.createElement('div');
 		infoText.classList.add('matlab-infotext');
@@ -51,7 +51,7 @@ class MatlabCode extends HTMLElement {
 	}
 }
 
-customElements.define("matlab-code", MatlabCode);
+customElements.define('matlab-code', MatlabCode);
 
 class MatlabComment extends HTMLElement {
 	render() {
@@ -70,7 +70,7 @@ class MatlabComment extends HTMLElement {
 	}
 }
 
-customElements.define("matlab-comment", MatlabComment);
+customElements.define('matlab-comment', MatlabComment);
 
 class MatlabFunctionBlock extends HTMLElement {
 	
@@ -97,7 +97,7 @@ class MatlabFunctionBlock extends HTMLElement {
 		}
 }
 
-customElements.define("matlab-function", MatlabFunctionBlock);
+customElements.define('matlab-function', MatlabFunctionBlock);
 
 class MatlabMatrix extends HTMLElement {
 	
@@ -210,7 +210,7 @@ class MatlabMatrix extends HTMLElement {
 	}
 }
 
-customElements.define("matlab-matrix", MatlabMatrix);
+customElements.define('matlab-matrix', MatlabMatrix);
 
 class MatlabOutput extends HTMLElement {
 	render() {
@@ -235,7 +235,7 @@ class MatlabOutput extends HTMLElement {
 	}
 }
 
-customElements.define("matlab-output", MatlabOutput);
+customElements.define('matlab-output', MatlabOutput);
 
 class MatlabSyms extends HTMLElement {
 	
@@ -264,7 +264,7 @@ class MatlabSyms extends HTMLElement {
 	}
 }
 
-customElements.define("matlab-syms", MatlabSyms);
+customElements.define('matlab-syms', MatlabSyms);
 
 class MatlabTab extends HTMLElement {
 	render() {
@@ -279,7 +279,7 @@ class MatlabTab extends HTMLElement {
 	}
 }
 
-customElements.define("matlab-tab", MatlabTab);
+customElements.define('matlab-tab', MatlabTab);
 
 //-----------------Functions
 
