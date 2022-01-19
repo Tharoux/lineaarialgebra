@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-		<link rel="stylesheet" href="./matlabStyle.css">
-		<link rel="stylesheet" href="./mainStyle.css">
-		<script type="text/javascript" src="./matlab.js"></script>
-		<script type="text/javascript" src="./mainFunctionality.js"></script>
-		<!--<script type='text/javascript' src='./loaderFunctions.js'></script>-->
+		<meta charset='UTF-8'>
+		<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+		<link rel='stylesheet' href='./matlabStyle.css'>
+		<link rel='stylesheet' href='./mainStyle.css'>
+		<script type='text/javascript' src='./matlab.js'></script>
+		<script type='text/javascript' src='./mainFunctionality.js'></script>
+		<script type='text/javascript' src='./loaderFunctions.js'></script>
 		
 		<!--MathJax-->
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+		<script src='https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
+		<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
 	</head>
 	<body>
 		<p>Tässä alla on custom element</p>
 		<matlab-code>
-			<matlab-syms syms="x y z"></matlab-syms>
+			<matlab-syms syms='x y z'></matlab-syms>
 			sum = 0;
-			<matlab-function function-name="for" function-inline="i = 0:10">
-				<matlab-comment multiline="true">
+			<matlab-function function-name='for' function-inline='i = 0:10'>
+				<matlab-comment multiline='true'>
 					Tämä on multiline<br>
 					matlabtyylinen<br>
 					kommentti
 				</matlab-comment>
-				<matlab-function function-name="if" function-inline="(i < 5 || i%2=0)">
-					<matlab-function function-name="myFunction">
+				<matlab-function function-name='if' function-inline='(i < 5 || i%2=0)'>
+					<matlab-function function-name='myFunction'>
 						<matlab-tab>
 							<matlab-comment>
 								Funktion toiminta
 							</matlab-comment>
-							<matlab-function function-name="functionInTab" function-inline="variables">
+							<matlab-function function-name='functionInTab' function-inline='variables'>
 								<matlab-tab>
 									<matlab-comment>
 										Funktion toiminta
@@ -54,11 +54,11 @@
 		</matlab-code>
 		<matlab-output>
 			Tämä on matlab-output ympäristö eli se minkä Matlab antaa ulos:
-			<matlab-matrix matrix-name="M, N" matrix="[a, b; c, d] [a + b, f, 1; g, h, 2]"></matlab-matrix>
+			<matlab-matrix matrix-name='M, N' matrix='[a, b; c, d] [a + b, f, 1; g, h, 2]'></matlab-matrix>
 			Matriisit voi myös jättää nimeämättä:
-			<matlab-matrix matrix="[a, b; c, d] [a + b, f; g, h; i, j]"></matlab-matrix>
+			<matlab-matrix matrix='[a, b; c, d] [a + b, f; g, h; i, j]'></matlab-matrix>
 			Matriisit voivat olla juuri niin villejä kuin niistä tekee:
-			<matlab-matrix matrix="[a, b, c; d, e; f, g, h, i]"></matlab-matrix>
+			<matlab-matrix matrix='[a, b, c; d, e; f, g, h, i]'></matlab-matrix>
 		</matlab-output>
 		
 		<special-box box-type='corollary'>
@@ -90,21 +90,21 @@
 				</special-box>
 				<special-box box-type='solution-bymatlab'>
 					<matlab-code>
-			<matlab-syms syms="x, y, z"></matlab-syms>
+			<matlab-syms syms='x, y, z'></matlab-syms>
 			sum = 0;
-			<matlab-function function-name="for" function-inline="i = 0:10">
-				<matlab-comment multiline="true">
+			<matlab-function function-name='for' function-inline='i = 0:10'>
+				<matlab-comment multiline='true'>
 					Tämä on multiline<br>
 					matlabtyylinen<br>
 					kommentti
 				</matlab-comment>
-				<matlab-function function-name="if" function-inline="(i < 5 || i%2=0)">
-					<matlab-function function-name="myFunction">
+				<matlab-function function-name='if' function-inline='(i < 5 || i%2=0)'>
+					<matlab-function function-name='myFunction'>
 						<matlab-tab>
 							<matlab-comment>
 								Funktion toiminta
 							</matlab-comment>
-							<matlab-function function-name="functionInTab" function-inline="variables">
+							<matlab-function function-name='functionInTab' function-inline='variables'>
 								<matlab-tab>
 									<matlab-comment>
 										Funktion toiminta
