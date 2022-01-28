@@ -201,32 +201,39 @@ class SpecialBox extends HTMLElement {
 
 		this.classList.add(boxType);
 		
-		if (/solution/.test(boxType)) {
-			switch (boxType) {
-				case 'solution':
-					let buttonBox = document.createElement('div');
-					buttonBox.classList.add('solution-button-box');
+		switch (boxType) {
+			case 'solution':
+				let buttonBox = document.createElement('div');
+				buttonBox.classList.add('solution-button-box');
+				
+				this.prepend(buttonBox);
+			break;
+			case 'solution-byhand':
+				solutionSettings(
+					this,
+					'byhand',
+					'Näytä ratkaisu',
+					boxType
+				)
+			break;
+			case 'solution-bymatlab':
+				solutionSettings(
+					this,
+					'bymatlab',
+					'Näytä Matlab-ratkaisu',
+					boxType
+				)
+			break;
+			case 'theorem':
+				if ( this.getAttribute('theorem-number') ) {
+					let numberContainer = document.createElement('span');
+					numberContainer.textContent = this.getAttribute('theorem-number');
+					numberContainer.style.fontWeight = 'bold';
 					
-					this.prepend(buttonBox);
-				break;
-				case 'solution-byhand':
-					solutionSettings(
-						this,
-						'byhand',
-						'Näytä ratkaisu',
-						boxType
-					)
-				break;
-				case 'solution-bymatlab':
-					solutionSettings(
-						this,
-						'bymatlab',
-						'Näytä Matlab-ratkaisu',
-						boxType
-					)
-				break;
-				default:
-			}
+					this.insertAdjacentElement('afterbegin', numberContainer);
+				}
+			break;
+			default:
 		}
 	}
 	
@@ -274,6 +281,8 @@ var extraTabs = 0;
 //This function is recursive!
 function codeExtractor(container, ba) {
 	
+	let thisItarationNumber = iterationNumber;
+	
 	let pseudoElements = checkPseudoElements(container, ba);
 	let childNodeArray = container.childNodes;
 	
@@ -291,8 +300,6 @@ function codeExtractor(container, ba) {
 		
 		extraTabs = ((childNodeArray[textNodeIndex].data || '').match(/\t/g) || []).length;
 	}
-	
-	let pseudoBefore;
 	
 	let regExpString = /^\n?/gm;
 	let regExpString2 = /\t*(?=\s)$/gm;
@@ -321,7 +328,7 @@ function codeExtractor(container, ba) {
 				
 				let textData = e.data;
 				
-				if (pseudoBefore == '%') {
+				if (writtenCode.charAt(writtenCode.length - 1) == '%') {
 					textData = ' ' + textData.trimStart();
 				}
 				
@@ -345,7 +352,15 @@ function codeExtractor(container, ba) {
 	writtenCode = writtenCode.replace(regExpString, '');
 	writtenCode = writtenCode.replace(regExpString2, '');
 	
-	return [writtenCode, extraTabs];
+	let returnedWrittenCode = writtenCode;
+	
+	// Return global variables to initial state.
+	if (thisItarationNumber == 0) {
+		writtenCode = '';
+		iterationNumber = 0;
+	}
+	
+	return [returnedWrittenCode, extraTabs];
 }
 
 function copyCode(container, ba) {
