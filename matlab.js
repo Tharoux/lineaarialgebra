@@ -55,11 +55,42 @@ customElements.define('matlab-code', MatlabCode);
 
 class MatlabComment extends HTMLElement {
 	render() {
+		
+		/*
+		// Fall back to this if comments stop working.
+		
 		this.classList.add('matlab-comment');
 		
 		if (this.getAttribute('multiline')) {
 			this.classList.add('matlab-comment-multi');
 		}
+		
+		*/
+		
+		let commentBegin = document.createElement('div');
+		let commentEnd = document.createElement('div');
+		
+		if (this.getAttribute('multiline')) {
+			this.classList.add('matlab-comment-multi');
+			
+			commentBegin.textContent = '%{';
+			commentEnd.textContent = '%}';
+			
+			window.addEventListener('load', e => {
+				this.insertAdjacentElement('afterbegin', commentBegin);
+				this.insertAdjacentElement('beforeend', commentEnd);
+			});
+		} else {
+			this.classList.add('matlab-comment');
+			
+			commentBegin = document.createElement('span');
+			commentBegin.textContent = '%';
+			
+			window.addEventListener('load', e => {
+				this.insertAdjacentElement('afterbegin', commentBegin);
+			});
+		}
+		
 	}
 	
 	connectedCallback() {
@@ -76,8 +107,10 @@ class MatlabFunctionBlock extends HTMLElement {
 	
 	render() {
 		
-			this.classList.add('matlab-function-block');
+			/*
+			// Fall back to this if functions stop working.
 			
+			this.classList.add('matlab-function-block');
 			
 			let functionName = document.createElement('span');
 			functionName.classList.add('matlab-function');
@@ -87,6 +120,27 @@ class MatlabFunctionBlock extends HTMLElement {
 			inlineCode.textContent = this.getAttribute('function-inline');
 			
 			this.prepend(functionName, inlineCode);
+			*/
+			
+			this.classList.add('matlab-function-block');
+			
+			let functionName = document.createElement('span');
+			functionName.classList.add('matlab-function');
+			functionName.textContent = this.getAttribute('function-name') + ' ';
+			
+			let inlineCode = document.createElement('span');
+			inlineCode.textContent = this.getAttribute('function-inline');
+			
+			let functionEnd = document.createElement('div');
+			functionEnd.classList.add('matlab-function');
+			functionEnd.textContent = 'end';
+			
+			window.addEventListener('load', e => {
+				this.insertAdjacentElement('afterbegin', inlineCode);
+				this.insertAdjacentElement('afterbegin', functionName);
+				this.insertAdjacentElement('beforeend', functionEnd);
+			});
+			
 		}
 		
 		connectedCallback() {
@@ -174,7 +228,6 @@ class MatlabMatrix extends HTMLElement {
 		tempArray.forEach((e, i) => {
 			let rows = e.split(/\;/);
 			let rowCount = rows.length;
-			let columnCount = rows[0].match(/\,/).length + 1;
 			
 			let matrixTableBody = document.createElement('tbody');
 			
@@ -218,6 +271,7 @@ class MatlabOutput extends HTMLElement {
 		
 		let infoText = document.createElement('div');
 		infoText.classList.add('matlab-infotext');
+		infoText.classList.add('matlab-infotext-output');
 		infoText.innerHTML = 'Matlab-tuloste';
 		
 		let infoTextWrapper = document.createElement('div');
