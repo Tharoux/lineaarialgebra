@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta charset='UTF-8'>
-		<?xml version='1.0' encoding='UTF-8' standalone='no'?>
 		<link rel='stylesheet' href='./matlabStyle.css'>
 		<link rel='stylesheet' href='./mainStyle.css'>
 		<script type='text/javascript' src='./matlab.js'></script>
@@ -15,6 +14,8 @@
 	</head>
 	<body>
 		<p>Tässä alla on custom element</p>
+		<article-content>
+		<textarea></textarea>
 		<matlab-code>
 			<matlab-syms syms='x y z'></matlab-syms>
 			sum = 0;
@@ -74,6 +75,9 @@
 			Teksti laatikon sisällä.
 		</special-box>
 		<special-box box-type='summary'>
+			Teksti laatikon sisällä.
+		</special-box>
+		<special-box box-type='theorem' theorem-number='1.1.1'>
 			Teksti laatikon sisällä.
 		</special-box>
 		<special-box box-type='theorem'>
@@ -318,6 +322,7 @@
 			<f-li>Isot roomalaiset</f-li>
 			<f-li>Isot roomalaiset</f-li>
 		</f-list>
+		</article-content>
 		<p>Tässä yllä on custom element</p>
 
 	</body>
