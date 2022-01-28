@@ -80,16 +80,17 @@
 }
 
 .flex-hor {
-	display: flex;
 	display: -webkit-flex;
-	flex-flow: row wrap;
+	display: flex;
 	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
 }
 
 .flex-ver {
 	display: -webkit-flex;
-	flex-flow: column wrap;
+	display: flex;
 	-webkit-flex-flow: column wrap;
+	flex-flow: column wrap;
 }
 
 .matlab-syms {
