@@ -17,8 +17,8 @@
 	float: none;
 	font-size: 110%;
 	text-align: justify;
-	text-justify: inter-word;
 	-webkit-text-justify: inter-word;
+	text-justify: inter-word;
 }
 
 .copy {
@@ -41,9 +41,9 @@
 	background-image: url("https://digicampus.fi/pluginfile.php/823748/mod_resource/content/1.7976931348623157e+308/copy_icon_1.svg");
 	background-repeat:	no-repeat;
 	background-position: 100% 50%;
-	background-size: contain;
 	-webkit-background-size: contain;
 	-o-background-size: contain;
+	background-size: contain;
 	cursor: pointer;
 	position: absolute;
 	right: min(0.5em, 1%);
@@ -136,14 +136,14 @@
 }
 
 .solution-button-box {
-	display: flex;
 	display: -webkit-flex;
-	flex-flow: row wrap;
+	display: flex;
 	-webkit-flex-flow: row wrap;
-	flex: min(1em, 2%);
+	flex-flow: row wrap;
 	-webkit-flex: min(1em, 2%);
-	justify-content: space-left;
+	flex: min(1em, 2%);
 	-webkit-justify-content: space-left;
+	justify-content: space-left;
 }
 
 .solution-byhand-button,
@@ -156,8 +156,8 @@
 	padding: 0.5em 0.5em;
 	margin: 0.5em;
 	text-align: center;
-	text-decoration: none;
 	-webkit-text-decoration: none;
+	text-decoration: none;
 	font-size: 1em;
 	border-radius: 3px;
 }
