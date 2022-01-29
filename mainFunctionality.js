@@ -11,6 +11,21 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 //---								CLASSES									---//
 //-----------------------------------------------------------------------------//
 
+class TestMatlabCode extends HTMLElement {
+	render() {
+		this.classList.add('test-matlab-code');
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('test-matlab-code', TestMatlabCode);
+
 class ArticleContent extends HTMLElement {
 	render() {
 		this.classList.add('article-content');
@@ -50,7 +65,7 @@ class FancyList extends HTMLElement {
 		document.onreadystatechange = function() {
 			if (document.readyState === 'interactive') {
 				let maxWidth = 0, elementWidth;
-				let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
+				let counterBoxes = this.getElementsByClassName('counterBox');
 				
 				for (const elem of counterBoxes) {
 					elementWidth = elem.getBoundingClientRect().width;
