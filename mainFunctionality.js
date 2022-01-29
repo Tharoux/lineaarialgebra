@@ -22,7 +22,7 @@ class TestMatlabCode extends HTMLElement {
 			this.rendered = true;
 		}
 	}
-}
+} 
 
 customElements.define('test-matlab-code', TestMatlabCode);
 
