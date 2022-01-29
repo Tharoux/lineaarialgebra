@@ -589,3 +589,53 @@ class MatlabComment extends HTMLElement {
 }
 
 customElements.define('matlab-comment', MatlabComment);
+
+class MatlabFunctionBlock extends HTMLElement {
+	
+	render() {
+		
+			/*
+			// Fall back to this if functions stop working.
+			
+			this.classList.add('matlab-function-block');
+			
+			let functionName = document.createElement('span');
+			functionName.classList.add('matlab-function');
+			functionName.textContent = this.getAttribute('function-name') + ' ';
+			
+			let inlineCode = document.createElement('span');
+			inlineCode.textContent = this.getAttribute('function-inline');
+			
+			this.prepend(functionName, inlineCode);
+			*/
+			
+			this.classList.add('matlab-function-block');
+			
+			let functionName = document.createElement('span');
+			functionName.classList.add('matlab-function');
+			functionName.textContent = this.getAttribute('function-name') + ' ';
+			
+			let inlineCode = document.createElement('span');
+			inlineCode.textContent = this.getAttribute('function-inline');
+			
+			let functionEnd = document.createElement('div');
+			functionEnd.classList.add('matlab-function');
+			functionEnd.textContent = 'end';
+			
+			window.addEventListener('load', e => {
+				this.insertAdjacentElement('afterbegin', inlineCode);
+				this.insertAdjacentElement('afterbegin', functionName);
+				this.insertAdjacentElement('beforeend', functionEnd);
+			});
+			
+		}
+		
+		connectedCallback() {
+			if(!this.rendered) {
+				this.render();
+				this.rendered = true;
+			}
+		}
+}
+
+customElements.define('matlab-function', MatlabFunctionBlock);
