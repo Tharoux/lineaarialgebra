@@ -487,3 +487,55 @@ function solutionSettings(node, method, buttonText, boxType) {
 // |					|
 // +--------------------+
 
+class MatlabCode extends HTMLElement {
+	
+	render() {
+		this.classList.add('matlab-code-block');
+		
+		let infoText = document.createElement('div');
+		infoText.classList.add('matlab-infotext');
+		infoText.innerHTML = 'Matlab-syöte';
+		
+		let infoTextWrapper = document.createElement('div');
+		infoTextWrapper.classList.add('flex-hor');
+		infoTextWrapper.append(infoText);
+		
+		this.before(infoTextWrapper);
+		
+		let copyButton = document.createElement('copy-button');
+		copyButton.classList.add('copy-button');
+		
+		let copyWrapper = document.createElement('div');
+		copyWrapper.classList.add('copy');
+		copyWrapper.append(copyButton);
+		
+		copyButton.addEventListener(
+			'click',
+			function() {
+				let urlString = `https://digicampus.fi/pluginfile.php/823736/mod_resource/content/${Number.MAX_VALUE}/copy_done_icon.svg`;
+				this.style.backgroundImage = 'url(' + urlString + ')';
+				let thisButtonID = this.id;
+				setTimeout(
+					function() {
+						urlString = `https://digicampus.fi/pluginfile.php/823748/mod_resource/content/${Number.MAX_VALUE}/copy_icon_1.svg`;
+						document
+							.getElementById(thisButtonID)
+							.style
+							.backgroundImage = 'url(' + urlString + ')';
+					}, 1500);
+					
+				copyCode(this.parentNode, true);
+			}
+		);
+		this.append(copyButton);
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('matlab-code', MatlabCode);
