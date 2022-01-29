@@ -76,10 +76,20 @@ class MatlabComment extends HTMLElement {
 			commentBegin.textContent = '%{';
 			commentEnd.textContent = '%}';
 			
+			window.onload = (e) => {
+				if (document.readyState === 'interactive') {
+					console.log('Onload');
+					this.insertAdjacentElement('afterbegin', commentBegin);
+					this.insertAdjacentElement('beforeend', commentEnd);
+				}
+			}
+			/*
 			window.addEventListener('load', e => {
 				this.insertAdjacentElement('afterbegin', commentBegin);
 				this.insertAdjacentElement('beforeend', commentEnd);
 			});
+			*/
+			
 		} else {
 			this.classList.add('matlab-comment');
 			
