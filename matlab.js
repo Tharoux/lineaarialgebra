@@ -51,21 +51,6 @@ class MatlabCode extends HTMLElement {
 
 customElements.define('matlab-code', MatlabCode);
 
-class TestMatlabCode extends HTMLElement {
-	render() {
-		this.classList.add('test-matlab-code');
-	}
-	
-	connectedCallback() {
-		if(!this.rendered) {
-			this.render();
-			this.rendered = true;
-		}
-	}
-}
-
-customElements.define('test-matlab-code', TestMatlabCode);
-
 class MatlabComment extends HTMLElement {
 	render() {
 		
