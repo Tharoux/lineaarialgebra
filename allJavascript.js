@@ -757,3 +757,104 @@ class MatlabMatrix extends HTMLElement {
 }
 
 customElements.define('matlab-matrix', MatlabMatrix);
+
+class MatlabOutput extends HTMLElement {
+	render() {
+		this.classList.add('matlab-code-output');
+		
+		let infoText = document.createElement('div');
+		infoText.classList.add('matlab-infotext');
+		infoText.classList.add('matlab-infotext-output');
+		infoText.innerHTML = 'Matlab-tuloste';
+		
+		let infoTextWrapper = document.createElement('div');
+		infoTextWrapper.classList.add('flex-hor');
+		infoTextWrapper.append(infoText);
+		
+		this.before(infoTextWrapper);
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('matlab-output', MatlabOutput);
+
+class MatlabSyms extends HTMLElement {
+	
+	render() {
+		
+		let symsSpan = document.createElement('span');
+		symsSpan.classList.add('matlab-syms');
+		symsSpan.textContent = 'syms ';
+		
+		let symsAttribute = document.createElement('span');
+		symsAttribute.textContent = this.getAttribute('syms');
+		
+		let wrapper = document.createElement('span');
+		wrapper.style.display = 'inline-block';
+		wrapper.style.width = '100%';
+		wrapper.append(symsSpan, symsAttribute);
+		
+		this.appendChild(wrapper);
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('matlab-syms', MatlabSyms);
+
+class MatlabTab extends HTMLElement {
+	render() {
+		this.classList.add('matlab-tab-block');
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('matlab-tab', MatlabTab);
+
+//-----------------Functions
+
+function tabFunction(regex, node, multiple) {
+	
+	if (multiple == undefined) {
+		multiple = 1;
+	}
+	
+	regex = elementToArray(regex);
+	
+	multiple = elementToArray(multiple);
+	
+	regex.forEach((e,i) => {
+		if (!(e.test(node.parentElement.tagName))) {
+			node.style.paddingLeft = multiple[i] * 25 + 'px';
+		}
+	})
+}
+
+function elementToArray(e) {
+	let tempArray = [];
+	
+	if (!(Array.isArray(e))) {
+		tempArray.push(e);
+	} else {
+		tempArray = e;
+	}
+	
+	return tempArray;
+}
