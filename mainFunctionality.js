@@ -58,8 +58,8 @@ class FancyList extends HTMLElement {
 			
 			for (const elem of counterBoxes) {
 				elem.style.width = maxWidth + 'px';
+				counterBoxes.innerHTML += ' ' + maxWidth;
 			}
-			counterBoxes.innerHTML += ' ' + maxWidth;
 		});
 	}
 	
