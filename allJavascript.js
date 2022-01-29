@@ -188,7 +188,7 @@ class ImportantTerm extends HTMLElement {
 
 customElements.define('imp-term', ImportantTerm);
 
-class SolutionButton extends HTMLButtonElement {
+class SolutionButton extends HTMLElement {
 	
 	constructor(method, ID) {
 		super();
@@ -208,7 +208,7 @@ class SolutionButton extends HTMLButtonElement {
 	}
 }
 
-customElements.define('solution-button', SolutionButton, {extends: 'button'});
+customElements.define('solution-button', SolutionButton);
 
 class SpecialBox extends HTMLElement {
 	render() {
@@ -470,10 +470,9 @@ function solutionSettings(node, method, buttonText, boxType) {
 	let solutionButton = new SolutionButton(method, randomID());
 	solutionButton.classList.add(`solution-${method}-button`);
 	solutionButton.textContent = buttonText;
-	solutionButton.addEventListener(
-		'click',
-		e => displayBox(e)
-	);
+	solutionButton.addEventListener('click', e => {
+		displayBox(e) 
+	});
 	
 	solutionButtonBox.appendChild(solutionButton);
 	
@@ -707,14 +706,10 @@ class MatlabMatrix extends HTMLElement {
 		let matrixElements = this.getAttribute('matrix');
 		//const tempArray = matrixElements.split(/(?<=\])\s/);
 		const tempArray = matrixElements.split(/\]\s*\[/); /*Safari doesn't understand lookbehind (?<= ) !!!*/
-		console.log('before');
-		console.log(tempArray);
 		tempArray.forEach((e, i) => {
 			e = e.replace(/\[|\]/g,'');
 			tempArray[i] = e;
 		});
-		console.log('after');
-		console.log(tempArray);
 		
 		//Create "matrices"
 		let matrixArray = [];
