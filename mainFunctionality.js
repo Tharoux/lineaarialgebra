@@ -191,7 +191,7 @@ class ImportantTerm extends HTMLElement {
 
 customElements.define('imp-term', ImportantTerm);
 
-class SolutionButton extends HTMLButtonElement {
+class SolutionButton extends HTMLElement {
 	
 	constructor(method, ID) {
 		super();
@@ -211,7 +211,7 @@ class SolutionButton extends HTMLButtonElement {
 	}
 }
 
-customElements.define('solution-button', SolutionButton, {extends: 'button'});
+customElements.define('solution-button', SolutionButton);
 
 class SpecialBox extends HTMLElement {
 	render() {
