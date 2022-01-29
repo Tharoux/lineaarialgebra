@@ -49,7 +49,7 @@ class FancyList extends HTMLElement {
 		document.addEventListener('DOMContentLoaded', e => {
 			
 			let maxWidth = 0, elementWidth;
-			let counterBoxes = this.getElementsByClassName('counterBox');
+			let counterBoxes = this.getElementsByClassName('counterBox'); /*Safari might have caching problems here*/
 			
 			for (const elem of counterBoxes) {
 				elementWidth = elem.getBoundingClientRect().width;
@@ -59,6 +59,7 @@ class FancyList extends HTMLElement {
 			for (const elem of counterBoxes) {
 				elem.style.width = maxWidth + 'px';
 			}
+			counterBoxes.innerHTML += ' ' + maxWidth;
 		});
 	}
 	
