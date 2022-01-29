@@ -45,11 +45,29 @@ customElements.define('copy-button', CopyButton);
 class FancyList extends HTMLElement {
 	render() {
 		this.setAttribute('listItems', 0);
+		this.setAttribute('maxwidth', 0);
 		
-		//document.addEventListener('DOMContentLoaded', e => {			/*WebKit can't access this??*/
-			
+		document.onreadystatechange = function() {
+			if (document.readyState === 'interactive') {
+				let maxWidth = 0, elementWidth;
+				let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
+				
+				for (const elem of counterBoxes) {
+					elementWidth = elem.getBoundingClientRect().width;
+					if (elementWidth > maxWidth) { maxWidth = elementWidth; }
+				}
+				
+				for (const elem of counterBoxes) {
+					elem.style.width = maxWidth + 'px';
+			}
+			}
+		}
+		
+		/*
+		document.addEventListener('DOMContentLoaded', e => {				//WebKit can't access this??
+
 			let maxWidth = 0, elementWidth;
-			let counterBoxes = this.getElementsByClassName('counterBox'); /*Safari might have caching problems here*/
+			let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
 			
 			for (const elem of counterBoxes) {
 				elementWidth = elem.getBoundingClientRect().width;
@@ -59,7 +77,8 @@ class FancyList extends HTMLElement {
 			for (const elem of counterBoxes) {
 				elem.style.width = maxWidth + 'px';
 			}
-		//});
+		});
+		*/
 	}
 	
 	connectedCallback() {
@@ -82,8 +101,6 @@ class FancyListElement extends HTMLElement {
 	render() {
 		let listItemAmount = Number(this.parentElement.getAttribute('listItems'));
 		this.parentElement.setAttribute('listItems', listItemAmount + 1);
-		
-		
 		
 		let overflow = Math.floor(listItemAmount / alphabet.length);
 		let itemType = this.parentElement.getAttribute('item-type');
@@ -200,7 +217,7 @@ class SpecialBox extends HTMLElement {
 	render() {
 		
 		let boxType = this.getAttribute('box-type');
-
+		
 		this.classList.add(boxType);
 		
 		switch (boxType) {
