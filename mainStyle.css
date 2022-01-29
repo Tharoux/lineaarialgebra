@@ -25,8 +25,8 @@
 	width: 1em;
 	height: 1em;
 	position: absolute;
-	right: min(0.5em, 1%);
-	top: min(0.5em, 1%);
+	right: 0.5em;
+	top: 0.5em;
 	z-index: 100;
 }
 
@@ -45,8 +45,8 @@
 	background-size: contain;
 	cursor: pointer;
 	position: absolute;
-	right: min(0.5em, 1%);
-	top: min(0.5em, 1%);
+	right: 0.5em;
+	top: 0.5em;
 	z-index: 100;
 }
 
@@ -54,7 +54,7 @@
 	display: none;
 	background-image: none;
 	width: 100%;
-	top: min(4em, 8%);
+	top: 4em;
 	text-align: end;
 	word-wrap: normal;
 }
@@ -139,8 +139,8 @@
 	display: flex;
 	-webkit-flex-flow: row wrap;
 	flex-flow: row wrap;
-	-webkit-flex: min(1em, 2%);
-	flex: min(1em, 2%);
+	-webkit-flex: 1em;
+	flex: 1em;
 	-webkit-justify-content: space-left;
 	justify-content: space-left;
 }
@@ -211,7 +211,7 @@ f-li {
 .proof::before
 {
 	font-weight: bold;
-	padding-right: min(1em, 2%);
+	padding-right: 1em;
 }
 
 .solution-byhand::before,
