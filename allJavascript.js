@@ -554,7 +554,6 @@ class MatlabComment extends HTMLElement {
 		
 		*/
 		
-		/*
 		let commentBegin = document.createElement('div');
 		let commentEnd = document.createElement('div');
 		
@@ -578,7 +577,6 @@ class MatlabComment extends HTMLElement {
 				this.insertAdjacentElement('afterbegin', commentBegin);
 			});
 		}
-		*/
 	}
 	
 	connectedCallback() {
@@ -610,6 +608,7 @@ class MatlabFunctionBlock extends HTMLElement {
 			this.prepend(functionName, inlineCode);
 			*/
 			
+			/*
 			this.classList.add('matlab-function-block');
 			
 			let functionName = document.createElement('span');
@@ -628,6 +627,7 @@ class MatlabFunctionBlock extends HTMLElement {
 				this.insertAdjacentElement('afterbegin', functionName);
 				this.insertAdjacentElement('beforeend', functionEnd);
 			});
+			*/
 			
 		}
 		
