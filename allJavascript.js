@@ -639,3 +639,115 @@ class MatlabFunctionBlock extends HTMLElement {
 }
 
 customElements.define('matlab-function', MatlabFunctionBlock);
+
+class MatlabMatrix extends HTMLElement {
+	
+	render() {
+		
+		let matrixName = this.getAttribute('matrix-name');
+		let matrixNameArray = [];
+		let constructedMatrices = this.matrixConstructor();
+		
+		
+		//Construct matrix names
+		if (matrixName != null) {
+			
+			matrixNameArray = matrixName.replace(/\s/g,'').split(',');
+			matrixNameArray.forEach((e, i) => {
+				
+				let matrixRowAmount = constructedMatrices[i].childNodes[0].rows.length;
+				let matrixColumnAmount = constructedMatrices[i].childNodes[0].rows[0].cells.length;
+
+				let matrixSize = document.createElement('span');
+				matrixSize.textContent = `${e} = ${matrixRowAmount}x${matrixColumnAmount}`;
+				
+				let leftWrap = document.createElement('div');
+				leftWrap.append(matrixSize);
+				
+				let rightWrap = document.createElement('div');
+				rightWrap.append(constructedMatrices[i]);
+				
+				let wrapper = document.createElement('div');
+				wrapper.classList.add('flex-ver');
+				wrapper.append(leftWrap, rightWrap);
+				
+				matrixNameArray[i] = wrapper;
+			})
+		} else {
+			constructedMatrices.forEach(e => {
+				
+				let matrixRow = document.createElement('div');
+				matrixRow.classList.add('matlab-matrix-row');
+				matrixRow.append(e);
+				
+				let matrixTable = document.createElement('div');
+				matrixTable.classList.add('matlab-matrix-table');
+				matrixTable.append(matrixRow);
+				
+				let wrapper = document.createElement('div');
+				wrapper.append(matrixTable);
+				
+				matrixNameArray.push(wrapper);
+			})
+		}
+
+		matrixNameArray.forEach(e => {
+			this.append(e);
+		})
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+	
+	matrixConstructor() {
+		let matrixElements = this.getAttribute('matrix');
+		const tempArray = matrixElements.split(/(?<=\])\s/);
+		tempArray.forEach(e => {
+			e = e.slice(1,-1);
+		})
+		
+		//Create "matrices"
+		let matrixArray = [];
+		tempArray.forEach((e, i) => {
+			let rows = e.split(/\;/);
+			let rowCount = rows.length;
+			
+			let matrixTableBody = document.createElement('tbody');
+			
+			rows.forEach(e => {
+				
+				let row = document.createElement('tr');
+				
+				let splitRow = e.replace(/\s/g,'').split(',');
+				splitRow.forEach(el => {
+					let cell = document.createElement('td');
+					cell.style.textAlign = 'center';
+					cell.style.verticalAlign = 'middle';
+					cell.style.padding = '0px 5px 0px';
+					cell.append(el.replace(/\[|\]/g,''));
+					
+					row.appendChild(cell);
+				})
+				
+				matrixTableBody.appendChild(row);
+			})
+			
+			let matrixTable = document.createElement('table');
+			matrixTable.appendChild(matrixTableBody);
+			
+			let matrixCell = document.createElement('div');
+			matrixCell.classList.add('matlab-matrix-cell');
+			matrixCell.appendChild(matrixTable);
+			
+			matrixArray.push(matrixCell);
+		})
+		
+		return matrixArray;
+	}
+}
+
+customElements.define('matlab-matrix', MatlabMatrix);
