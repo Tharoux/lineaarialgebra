@@ -481,9 +481,16 @@ function solutionSettings(node, method, buttonText, boxType) {
 	node.classList.replace(boxType, boxType + '-hidden');
 }
 
+// +--------------------+
+// |					|
+// |		MATLAB		|
+// |					|
+// +--------------------+
+
 class MatlabCode extends HTMLElement {
 	
 	render() {
+		/*
 		this.classList.add('matlab-code-block');
 		
 		let infoText = document.createElement('div');
@@ -522,6 +529,7 @@ class MatlabCode extends HTMLElement {
 			}
 		);
 		this.append(copyButton);
+		*/
 	}
 	
 	connectedCallback() {
