@@ -473,10 +473,9 @@ function solutionSettings(node, method, buttonText, boxType) {
 	let solutionButton = new SolutionButton(method, randomID());
 	solutionButton.classList.add(`solution-${method}-button`);
 	solutionButton.textContent = buttonText;
-	solutionButton.addEventListener(
-		'click',
-		e => displayBox(e)
-	);
+	solutionButton.addEventListener( 'click', e => {
+		displayBox(e);
+	});
 	
 	solutionButtonBox.appendChild(solutionButton);
 	
