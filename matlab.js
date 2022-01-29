@@ -21,7 +21,6 @@ class MatlabCode extends HTMLElement {
 		copyWrapper.classList.add('copy');
 		copyWrapper.append(copyButton);
 		
-		/*
 		let randID = randomID();
 		copyButton.addEventListener(
 			'click',
@@ -41,7 +40,6 @@ class MatlabCode extends HTMLElement {
 				copyCode(this.parentNode, true);
 			}
 		);
-		*/
 		this.append(copyButton);
 	}
 	
@@ -54,6 +52,21 @@ class MatlabCode extends HTMLElement {
 }
 
 customElements.define('matlab-code', MatlabCode);
+
+class TestMatlabCode extends HTMLElement {
+	render() {
+		this.classList.add('test-matlab-code');
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('test-matlab-code', TestMatlabCode);
 
 class MatlabComment extends HTMLElement {
 	render() {
