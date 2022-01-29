@@ -11,21 +11,6 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 //---								CLASSES									---//
 //-----------------------------------------------------------------------------//
 
-class TestMatlabCode extends HTMLElement {
-	render() {
-		this.classList.add('test-matlab-code');
-	}
-	
-	connectedCallback() {
-		if(!this.rendered) {
-			this.render();
-			this.rendered = true;
-		}
-	}
-} 
-
-customElements.define('test-matlab-code', TestMatlabCode);
-
 class ArticleContent extends HTMLElement {
 	render() {
 		this.classList.add('article-content');
