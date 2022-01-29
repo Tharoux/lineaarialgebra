@@ -15,13 +15,11 @@ class MatlabCode extends HTMLElement {
 		
 		let copyButton = document.createElement('copy-button');
 		copyButton.classList.add('copy-button');
-		copyButton.setAttribute('id', randomID());
 		
 		let copyWrapper = document.createElement('div');
 		copyWrapper.classList.add('copy');
 		copyWrapper.append(copyButton);
 		
-		let randID = randomID();
 		copyButton.addEventListener(
 			'click',
 			function() {
