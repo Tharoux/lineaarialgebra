@@ -134,5 +134,5 @@
 .matlab-function-block > .matlab-comment,
 .matlab-function-block > .matlab-comment-multi
 {
-	padding-left: min(2.5em, 5%);
+	padding-left: 2.5em;
 }
