@@ -705,10 +705,16 @@ class MatlabMatrix extends HTMLElement {
 	
 	matrixConstructor() {
 		let matrixElements = this.getAttribute('matrix');
-		const tempArray = matrixElements.split(/(?<=\])\s/);
-		tempArray.forEach(e => {
-			e = e.slice(1,-1);
-		})
+		//const tempArray = matrixElements.split(/(?<=\])\s/);
+		const tempArray = matrixElements.split(/\]\s*\[/); /*Safari doesn't understand lookbehind (?<= ) !!!*/
+		console.log('before');
+		console.log(tempArray);
+		tempArray.forEach((e, i) => {
+			e = e.replace(/\[|\]/g,'');
+			tempArray[i] = e;
+		});
+		console.log('after');
+		console.log(tempArray);
 		
 		//Create "matrices"
 		let matrixArray = [];
