@@ -556,6 +556,7 @@ class MatlabComment extends HTMLElement {
 		
 		*/
 		
+		/*
 		let commentBegin = document.createElement('div');
 		let commentEnd = document.createElement('div');
 		
@@ -579,7 +580,7 @@ class MatlabComment extends HTMLElement {
 				this.insertAdjacentElement('afterbegin', commentBegin);
 			});
 		}
-		
+		*/
 	}
 	
 	connectedCallback() {
