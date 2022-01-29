@@ -539,3 +539,53 @@ class MatlabCode extends HTMLElement {
 }
 
 customElements.define('matlab-code', MatlabCode);
+
+class MatlabComment extends HTMLElement {
+	render() {
+		
+		/*
+		// Fall back to this if comments stop working.
+		
+		this.classList.add('matlab-comment');
+		
+		if (this.getAttribute('multiline')) {
+			this.classList.add('matlab-comment-multi');
+		}
+		
+		*/
+		
+		let commentBegin = document.createElement('div');
+		let commentEnd = document.createElement('div');
+		
+		if (this.getAttribute('multiline')) {
+			this.classList.add('matlab-comment-multi');
+			
+			commentBegin.textContent = '%{';
+			commentEnd.textContent = '%}';
+			
+			document.addEventListener('DOMContentLoaded', e => {
+				this.insertAdjacentElement('afterbegin', commentBegin);
+				this.insertAdjacentElement('beforeend', commentEnd);
+			});
+		} else {
+			this.classList.add('matlab-comment');
+			
+			commentBegin = document.createElement('span');
+			commentBegin.textContent = '%';
+			
+			window.addEventListener('load', e => {
+				this.insertAdjacentElement('afterbegin', commentBegin);
+			});
+		}
+		
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('matlab-comment', MatlabComment);
