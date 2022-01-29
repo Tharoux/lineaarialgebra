@@ -46,7 +46,7 @@ class FancyList extends HTMLElement {
 	render() {
 		this.setAttribute('listItems', 0);
 		
-		document.addEventListener('DOMContentLoaded', e => {			/*WebKit can't access this??*/
+		//document.addEventListener('DOMContentLoaded', e => {			/*WebKit can't access this??*/
 			
 			let maxWidth = 0, elementWidth;
 			let counterBoxes = this.getElementsByClassName('counterBox'); /*Safari might have caching problems here*/
@@ -59,7 +59,7 @@ class FancyList extends HTMLElement {
 			for (const elem of counterBoxes) {
 				elem.style.width = maxWidth + 'px';
 			}
-		});
+		//});
 	}
 	
 	connectedCallback() {
@@ -82,6 +82,8 @@ class FancyListElement extends HTMLElement {
 	render() {
 		let listItemAmount = Number(this.parentElement.getAttribute('listItems'));
 		this.parentElement.setAttribute('listItems', listItemAmount + 1);
+		
+		
 		
 		let overflow = Math.floor(listItemAmount / alphabet.length);
 		let itemType = this.parentElement.getAttribute('item-type');
