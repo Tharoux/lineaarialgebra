@@ -47,38 +47,9 @@ class FancyList extends HTMLElement {
 		this.setAttribute('listItems', 0);
 		this.setAttribute('maxwidth', 0);
 		
-		document.onreadystatechange = function() {
-			if (document.readyState === 'interactive') {
-				let maxWidth = 0, elementWidth;
-				let counterBoxes = this.getElementsByClassName('counterBox');
-				
-				for (const elem of counterBoxes) {
-					elementWidth = elem.getBoundingClientRect().width;
-					if (elementWidth > maxWidth) { maxWidth = elementWidth; }
-				}
-				
-				for (const elem of counterBoxes) {
-					elem.style.width = maxWidth + 'px';
-			}
-			}
-		}
+		let wrapper = document.createElement('div');
 		
-		/*
-		document.addEventListener('DOMContentLoaded', e => {				//WebKit can't access this??
-
-			let maxWidth = 0, elementWidth;
-			let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
-			
-			for (const elem of counterBoxes) {
-				elementWidth = elem.getBoundingClientRect().width;
-				if (elementWidth > maxWidth) { maxWidth = elementWidth; }
-			}
-			
-			for (const elem of counterBoxes) {
-				elem.style.width = maxWidth + 'px';
-			}
-		});
-		*/
+		listItemFormat(this);
 	}
 	
 	connectedCallback() {
@@ -408,6 +379,55 @@ function displayBox(e) {
 		solutionBox.setAttribute('class', solutionBoxClass + '-hidden');
 		e.target.textContent = buttonText.replace('Piilota', 'Näytä');
 	}
+}
+
+function listItemFormat(list) {
+	/*
+	document.onreadystatechange = function() {
+		if (document.readyState === 'interactive') {
+			let maxWidth = 0, elementWidth;
+			let counterBoxes = this.getElementsByClassName('counterBox');
+			
+			for (const elem of counterBoxes) {
+				elementWidth = elem.getBoundingClientRect().width;
+				if (elementWidth > maxWidth) { maxWidth = elementWidth; }
+			}
+			
+			for (const elem of counterBoxes) {
+				elem.style.width = maxWidth + 'px';
+				elem.style.height = '100%';
+			}
+			
+			for (const e of this.getElementsByTagName('f-li')) {
+				//console.log(e);
+				e.childNodes.forEach( el => {
+					if (el.className != 'counterBox') {
+						//console.log(el);
+						//wrapper.append(el);
+					}
+				});
+				//e.append(wrapper);
+			}
+		}
+	}
+	*/
+		
+	
+	list.addEventListener('DOMContentLoaded', e => {				//WebKit can't access this??
+
+		let maxWidth = 0, elementWidth;
+		let counterBoxes = list.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
+		
+		for (const elem of counterBoxes) {
+			elementWidth = elem.getBoundingClientRect().width;
+			if (elementWidth > maxWidth) { maxWidth = elementWidth; }
+		}
+		
+		for (const elem of counterBoxes) {
+			elem.style.width = maxWidth + 'px';
+		}
+	});
+	
 }
 
 function toRoman(n, caps) {
