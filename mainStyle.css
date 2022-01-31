@@ -108,6 +108,13 @@
 	font-style: italic;
 }
 
+.list-wrapper {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: column nowrap;
+	flex-flow: column nowrap;
+}
+
 .proof {
 	display: block;
 	margin-left: 40px;
