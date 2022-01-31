@@ -108,10 +108,10 @@
 }
 
 .list-wrapper {
-	display: -webkit-flex;
+	/*display: -webkit-flex;
 	display: flex;
 	-webkit-flex-flow: column nowrap;
-	flex-flow: column nowrap;
+	flex-flow: column nowrap;*/
 	max-width: 90%;
 }
 
