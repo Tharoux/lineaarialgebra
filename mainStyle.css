@@ -78,7 +78,6 @@
 }
 
 .counterBox {
-	display: inline-block;
 	min-width: 20px;
 	margin-right: 10px;
 	text-align: right;
@@ -109,10 +108,7 @@
 }
 
 .list-wrapper {
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-flow: column nowrap;
-	flex-flow: column nowrap;
+	max-width: 90%;
 }
 
 .proof {
