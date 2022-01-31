@@ -189,7 +189,10 @@ f-list {
 }
 
 f-li {
-	display: block;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
 	/*padding-left: 20px;*/
 	margin: 5px 5px 5px;
 	/*margin-left: 40px;*/
