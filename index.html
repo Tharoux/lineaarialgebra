@@ -145,52 +145,58 @@
 		
 		Tässä on <imp-term>imp-term tag</imp-term>, jota voi käyttää tärkeiden termien korostamiseen.
 		
-		<f-list item-type='(a)'>
-			<f-li>
-				Kirjoitetaan matriisien koot
-					$$
-						\underbrace{\underbrace{A}_{3\times 4}\quad
-						\underbrace{D}_{4\times 2}}_{\textrm{OK, } 4=4}\quad
-						\underbrace{B}_{2\times 4}
-						=
-						\underbrace{\underbrace{AD}_{3\times 2}\quad
-						\underbrace{B}_{2\times 4}}_{\textrm{OK, } 2=2}
-						=\underbrace{ADB}_{3\times 4}.
-					$$
-				Matriisitulo on liitännäinen, joten tekijät voidaan ryhmitellä toisinkin
-					$$
-						\underbrace{A}_{3\times 4}\quad
-						\underbrace{\underbrace{D}_{4\times 2}\quad
-						\underbrace{B}_{2\times 4}}_{\textrm{OK, } 2=2}
-						=\underbrace{\underbrace{A}_{3\times 4}\quad
-						\underbrace{DB}_{4\times 4}}_{\textrm{OK, }4=4}
-						=\underbrace{ADB}_{3\times 4}.
-					$$
-				Matriisitulon laskeminen on sitä työläämpää, mitä suurempia matriisit ovat. 
-				Sen vuoksi jälkimmäisessä laskussa välivaiheena muodostuva kokoa \(4\times 4\) 
-				oleva matriisi \(DB\) on laskujen kannalta epäedullinen. 
-			</f-li>
-			<f-li>
-				Kirjoitetaan matriisien koot
-					$$
-						\underbrace{\underbrace{D}_{4\times 2}\quad
-						\underbrace{C}_{3\times 4}}_{\textrm{EI OK, }2\neq 3}.
-					$$
-			</f-li>
-			<f-li>
-				Matriisin \(A\in\mathbb{R}^ {3\times 4}\) transpoosi on \(A^T\in\mathbb{R}^{4\times 3}\). Siis
-					$$
-						\underbrace{\underbrace{A^T}_{4\times 3}\quad
-						\underbrace{A}_{3\times 4}}_{\textrm{OK, }3=3}
-					$$
-				on määritelty ja \((A^TA)\in\mathbb{R}^{4\times 4}\). Nyt
-					$$
-						\underbrace{\underbrace{A^TA}_{4\times 4}\quad
-						\underbrace{D}_{4\times 2}}_{\textrm{OK, }4=4}
-						=\underbrace{A^TAD}_{4\times 2}.
-					$$
-			</f-li>
-		</f-list>
+		<special-box box-type='example'>
+			<special-box box-type='solution'>
+				<special-box box-type='solution-byhand'>
+					<f-list item-type='(a)'>
+						<f-li>
+							Kirjoitetaan matriisien koot
+								$$
+									\underbrace{\underbrace{A}_{3\times 4}\quad
+									\underbrace{D}_{4\times 2}}_{\textrm{OK, } 4=4}\quad
+									\underbrace{B}_{2\times 4}
+									=
+									\underbrace{\underbrace{AD}_{3\times 2}\quad
+									\underbrace{B}_{2\times 4}}_{\textrm{OK, } 2=2}
+									=\underbrace{ADB}_{3\times 4}.
+								$$
+							Matriisitulo on liitännäinen, joten tekijät voidaan ryhmitellä toisinkin
+								$$
+									\underbrace{A}_{3\times 4}\quad
+									\underbrace{\underbrace{D}_{4\times 2}\quad
+									\underbrace{B}_{2\times 4}}_{\textrm{OK, } 2=2}
+									=\underbrace{\underbrace{A}_{3\times 4}\quad
+									\underbrace{DB}_{4\times 4}}_{\textrm{OK, }4=4}
+									=\underbrace{ADB}_{3\times 4}.
+								$$
+							Matriisitulon laskeminen on sitä työläämpää, mitä suurempia matriisit ovat. 
+							Sen vuoksi jälkimmäisessä laskussa välivaiheena muodostuva kokoa \(4\times 4\) 
+							oleva matriisi \(DB\) on laskujen kannalta epäedullinen. 
+						</f-li>
+						<f-li>
+							Kirjoitetaan matriisien koot
+								$$
+									\underbrace{\underbrace{D}_{4\times 2}\quad
+									\underbrace{C}_{3\times 4}}_{\textrm{EI OK, }2\neq 3}.
+								$$
+						</f-li>
+						<f-li>
+							Matriisin \(A\in\mathbb{R}^ {3\times 4}\) transpoosi on \(A^T\in\mathbb{R}^{4\times 3}\). Siis
+								$$
+									\underbrace{\underbrace{A^T}_{4\times 3}\quad
+									\underbrace{A}_{3\times 4}}_{\textrm{OK, }3=3}
+								$$
+							on määritelty ja \((A^TA)\in\mathbb{R}^{4\times 4}\). Nyt
+								$$
+									\underbrace{\underbrace{A^TA}_{4\times 4}\quad
+									\underbrace{D}_{4\times 2}}_{\textrm{OK, }4=4}
+									=\underbrace{A^TAD}_{4\times 2}.
+								$$
+						</f-li>
+					</f-list>
+				</special-box>
+			</special-box>
+		</special-box>
 		<f-list>
 			<f-li>Default</f-li>
 			<f-li>Default</f-li>
