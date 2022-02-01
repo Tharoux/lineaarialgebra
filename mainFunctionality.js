@@ -46,9 +46,30 @@ class FancyList extends HTMLElement {
 	render() {
 		this.setAttribute('listItems', 0);
 		
+		
 		window.addEventListener('load', e => {
 
 			let maxWidth = 0, elementWidth;
+			let listItems = this.querySelectorAll('f-li');
+			
+			listItems.forEach(e => {
+				let listWrapper = document.createElement('div');
+				listWrapper.classList.add('list-wrapper');
+				listWrapper.innerHTML += e.innerHTML;
+				e.innerHTML = '';
+				e.append(listWrapper);
+			});
+			
+			listItems.forEach(e => {
+				let counterBox = document.createElement('span');
+				counterBox.classList.add('counterBox');
+				counterBox.innerHTML += e.getAttribute('index');
+				e.prepend(counterBox);
+			});
+			
+			
+			
+			/*
 			let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
 			
 			for (const elem of counterBoxes) {
@@ -59,7 +80,9 @@ class FancyList extends HTMLElement {
 			for (const elem of counterBoxes) {
 				elem.style.minWidth = maxWidth + 'px';
 			}
+			*/
 			
+			/*
 			for (const e of this.getElementsByTagName('f-li')) {
 				
 				let tempNode;
@@ -83,6 +106,8 @@ class FancyList extends HTMLElement {
 				
 				e.append(wrapper);
 			}
+			*/
+			
 		});
 	}
 	
@@ -164,11 +189,14 @@ class FancyListElement extends HTMLElement {
 		
 		itemText += itemDecorations[1];
 		
+		/*
 		let counterBox = document.createElement('span');
 		counterBox.classList.add('counterBox');
 		counterBox.innerHTML += itemText;
+		*/
 		
-		this.prepend(counterBox);
+		this.setAttribute('index', itemText);
+		//this.prepend(counterBox);
 	}
 	
 	connectedCallback() {
