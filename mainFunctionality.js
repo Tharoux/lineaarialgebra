@@ -67,7 +67,16 @@ class FancyList extends HTMLElement {
 				e.prepend(counterBox);
 			});
 			
+			let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
 			
+			for (const elem of counterBoxes) {
+				elementWidth = elem.getBoundingClientRect().width;
+				if (elementWidth > maxWidth) { maxWidth = elementWidth; }
+			}
+			
+			for (const elem of counterBoxes) {
+				elem.style.minWidth = maxWidth + 'px';
+			}
 			
 			/*
 			let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
