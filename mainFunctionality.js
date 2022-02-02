@@ -49,7 +49,7 @@ class FancyList extends HTMLElement {
 		
 		window.addEventListener('load', e => {
 
-			let maxWidth = 0, elementWidth;
+			let maxWidth = 40, elementWidth;
 			let listItems = this.querySelectorAll('f-li');
 			
 			listItems.forEach(e => {
@@ -77,46 +77,6 @@ class FancyList extends HTMLElement {
 			for (const elem of counterBoxes) {
 				elem.style.minWidth = maxWidth + 'px';
 			}
-			
-			/*
-			let counterBoxes = this.getElementsByClassName('counterBox'); 	//Safari might have caching problems here
-			
-			for (const elem of counterBoxes) {
-				elementWidth = elem.getBoundingClientRect().width;
-				if (elementWidth > maxWidth) { maxWidth = elementWidth; }
-			}
-			
-			for (const elem of counterBoxes) {
-				elem.style.minWidth = maxWidth + 'px';
-			}
-			*/
-			
-			/*
-			for (const e of this.getElementsByTagName('f-li')) {
-				
-				let tempNode;
-				let wrapper = document.createElement('div');
-				wrapper.classList.add('list-wrapper');
-				
-				e.childNodes.forEach( el => {
-					if (el.className != 'counterBox') {
-						tempNode = el.cloneNode();
-						wrapper.append(tempNode);
-					}
-				});
-				
-				
-				e.childNodes.forEach( el => {
-					if (el.className != 'counterBox') {
-						e.removeChild(el);
-					}
-				});
-				
-				
-				e.append(wrapper);
-			}
-			*/
-			
 		});
 	}
 	
@@ -198,14 +158,7 @@ class FancyListElement extends HTMLElement {
 		
 		itemText += itemDecorations[1];
 		
-		/*
-		let counterBox = document.createElement('span');
-		counterBox.classList.add('counterBox');
-		counterBox.innerHTML += itemText;
-		*/
-		
 		this.setAttribute('index', itemText);
-		//this.prepend(counterBox);
 	}
 	
 	connectedCallback() {
