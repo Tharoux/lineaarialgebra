@@ -112,7 +112,11 @@
 	display: flex;
 	-webkit-flex-flow: column nowrap;
 	flex-flow: column nowrap;*/
+	flex-grow: 1;
 	max-width: 90%;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+	text-align: justify;
 }
 
 .proof {
@@ -192,7 +196,6 @@ f-list {
 	display: block;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: 40px;
 }
 
 f-li {
