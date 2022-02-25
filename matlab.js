@@ -15,6 +15,8 @@ class MatlabCode extends HTMLElement {
 		
 		let copyButton = document.createElement('copy-button');
 		copyButton.classList.add('copy-button');
+		copyButton.setAttribute('id', randomID());
+		copyButton.style.backgroundImage = 'url(https://Tharoux.github.io/lineaarialgebra/copy_icon_1.svg)';
 		
 		let copyWrapper = document.createElement('div');
 		copyWrapper.classList.add('copy');
@@ -23,16 +25,16 @@ class MatlabCode extends HTMLElement {
 		copyButton.addEventListener(
 			'click',
 			function() {
-				let urlString = `https://Tharoux.github.io/lineaarialgebra/copy_done_icon.svg`;
-				this.style.backgroundImage = 'url(' + urlString + ')';
+				let urlString = 'https://Tharoux.github.io/lineaarialgebra/copy_done_icon.svg';
+				this.style.backgroundImage = `url(${urlString})`;
 				let thisButtonID = this.id;
 				setTimeout(
 					function() {
-						urlString = `https://Tharoux.github.io/lineaarialgebra/copy_icon_1.svg`;
+						urlString = 'https://Tharoux.github.io/lineaarialgebra/copy_icon_1.svg';
 						document
 							.getElementById(thisButtonID)
 							.style
-							.backgroundImage = 'url(' + urlString + ')';
+							.backgroundImage = `url(${urlString})`;
 					}, 1500);
 					
 				copyCode(this.parentNode, true);
