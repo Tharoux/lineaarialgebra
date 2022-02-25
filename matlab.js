@@ -74,7 +74,7 @@ class MatlabComment extends HTMLElement {
 			commentBegin.textContent = '%{';
 			commentEnd.textContent = '%}';
 			
-			document.addEventListener('DOMContentLoaded', e => {
+			window.addEventListener('load', e => {
 				this.insertAdjacentElement('afterbegin', commentBegin);
 				this.insertAdjacentElement('beforeend', commentEnd);
 			});
