@@ -23,12 +23,12 @@ class MatlabCode extends HTMLElement {
 		copyButton.addEventListener(
 			'click',
 			function() {
-				let urlString = `https://digicampus.fi/pluginfile.php/823736/mod_resource/content/${Number.MAX_VALUE}/copy_done_icon.svg`;
+				let urlString = `https://Tharoux.github.io/lineaarialgebra/copy_done_icon.svg`;
 				this.style.backgroundImage = 'url(' + urlString + ')';
 				let thisButtonID = this.id;
 				setTimeout(
 					function() {
-						urlString = `https://digicampus.fi/pluginfile.php/823748/mod_resource/content/${Number.MAX_VALUE}/copy_icon_1.svg`;
+						urlString = `https://Tharoux.github.io/lineaarialgebra/copy_icon_1.svg`;
 						document
 							.getElementById(thisButtonID)
 							.style
