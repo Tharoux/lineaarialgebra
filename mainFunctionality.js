@@ -13,7 +13,7 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 class ArticleContent extends HTMLElement {
 	render() {
-		this.classList.add('article-content');
+		
 	}
 	
 	connectedCallback() {
@@ -45,12 +45,52 @@ customElements.define('copy-button', CopyButton);
 class FancyList extends HTMLElement {
 	render() {
 		this.setAttribute('listItems', 0);
+		this.setAttribute('id', randomID());
+		let itemCycle = this.getAttribute('item-cycle');
 		
+		if (this.parentNode.nodeName == 'F-LIST') {
+			if (!this.parentNode.getAttribute('nesting')) {
+				this.parentNode.setAttribute('nesting', 0);
+			}
+			
+			if (this.parentNode.getAttribute('item-cycle')) {
+				this.setAttribute('item-cycle', this.parentNode.getAttribute('item-cycle'));
+			}
+			
+			this.setAttribute('nesting', Number(this.parentNode.getAttribute('nesting')) + 1);
+			this.setAttribute('cyclic', true);
+			this.style.marginTop = '0px';
+			this.style.marginBottom = '0px';
+			this.style.marginLeft = 40 * Number(this.getAttribute('nesting')) + 'px';
+			
+				
+			if ((this.parentNode.getAttribute('item-cycle') || itemCycle)
+				&& !this.getAttribute('item-type'))
+			{
+				if (itemCycle) {
+					this.setAttribute('item-cycle', itemCycle);
+					itemCycle = itemCycle.split(' ');
+				} else {
+					this.setAttribute('item-cycle', this.parentNode.getAttribute('item-cycle'));
+					itemCycle = this.parentNode.getAttribute('item-cycle').split(' ');
+				}
+			} else if (this.getAttribute('item-type')) {
+				itemCycle = null;
+			} else {
+				// Default item-cycle.
+				itemCycle = ['1.', 'a.', 'i.'];
+			}
+		}
+		
+		if (itemCycle != null) {
+			this.setAttribute('cyclic', true);
+			this.setAttribute('item-type', itemCycle[Number(this.getAttribute('nesting')) % (itemCycle.length)]);
+		}
 		
 		window.addEventListener('load', e => {
 
-			let maxWidth = 40, elementWidth;
-			let listItems = this.querySelectorAll('f-li');
+			let maxWidth = 30, elementWidth;		//There's a CSS margin-right: 10px in mainStyle.css
+			let listItems = this.querySelectorAll(`f-li[parent-id = '${this.id}']`);
 			
 			listItems.forEach(e => {
 				let listWrapper = document.createElement('div');
@@ -98,25 +138,33 @@ customElements.define('f-list', FancyList);
 //	- 'I' for big roman
 class FancyListElement extends HTMLElement {
 	render() {
+		this.setAttribute('parent-id', this.parentNode.id);
 		let listItemAmount = Number(this.parentElement.getAttribute('listItems'));
 		this.parentElement.setAttribute('listItems', listItemAmount + 1);
 		
 		let overflow = Math.floor(listItemAmount / alphabet.length);
 		let itemType = this.parentElement.getAttribute('item-type');
-		let itemName, itemDecorations =['', '.'];
+		let itemName, itemDecorations = ['', '.'];
 		if (itemType != null) {
 			
-			itemName = /\w/g.exec(itemType)[0];
-			itemDecorations = itemType.split(itemName);
-			itemDecorations = [itemDecorations[0], itemDecorations[itemDecorations.length - 1]];
+			if ((this.parentNode.getAttribute('cyclic') === 'true') && !(/\w/g.exec(itemType))) {
+				// This happens with cyclic lists.
+				itemName = itemType;
+				itemDecorations = ['', ''];
+			} else {
+				itemName = /\w/g.exec(itemType)[0];
 			
-			itemDecorations.forEach((e, i) => {
+				itemDecorations = itemType.split(itemName);
+				itemDecorations = [itemDecorations[0], itemDecorations[itemDecorations.length - 1]];
 				
-				if (itemDecorations[i].length > 0) {
-					itemDecorations[i] = itemDecorations[i].split('')[0];
-				}
-				
-			});
+				itemDecorations.forEach((e, i) => {
+					
+					if (itemDecorations[i].length > 0) {
+						itemDecorations[i] = itemDecorations[i].split('')[0];
+					}
+					
+				});
+			}
 		}
 		
 		let itemText = itemDecorations[0];
@@ -149,6 +197,18 @@ class FancyListElement extends HTMLElement {
 				listItemAmount++;
 			
 				itemText += toRoman(listItemAmount);
+			break;
+			case itemType:
+				// For cyclic lists.
+				listItemAmount++;
+				
+				itemText += itemName;
+			break;
+			case '1':
+				// For cyclic undetermined lists.
+				listItemAmount++;
+				
+				itemText += listItemAmount;
 			break;
 			default:
 				listItemAmount++;
@@ -213,7 +273,24 @@ class SpecialBox extends HTMLElement {
 		
 		let boxType = this.getAttribute('box-type');
 		
-		this.classList.add(boxType);
+		this.classList.add('uef-' + boxType);
+		
+		// This block is for backwards compatibility.
+			let numberContainer = document.createElement('span');
+			let numberText = this.getAttribute('theorem-number') 
+					? this.getAttribute('theorem-number') 
+					: this.getAttribute('number');
+			if (numberText) {
+				numberContainer.textContent = numberText;
+				numberContainer.style.fontWeight = 'bold';
+				numberContainer.style.marginRight = '1em';
+				numberContainer.style.marginLeft = '-0.75em';
+				
+				this.prepend(numberContainer);
+			}
+		
+		let textWrapper = document.createElement('span');
+		textWrapper.classList.add('special-box-title-text');
 		
 		switch (boxType) {
 			case 'solution':
@@ -223,31 +300,59 @@ class SpecialBox extends HTMLElement {
 				this.prepend(buttonBox);
 			break;
 			case 'solution-byhand':
+				textWrapper.innerText = 'Ratkaisu.';
 				solutionSettings(
 					this,
 					'byhand',
 					'Näytä ratkaisu',
-					boxType
+					'uef-' + boxType
 				)
 			break;
 			case 'solution-bymatlab':
+				textWrapper.innerText = 'Matlab-ratkaisu.';
 				solutionSettings(
 					this,
 					'bymatlab',
 					'Näytä Matlab-ratkaisu',
-					boxType
+					'uef-' + boxType
 				)
 			break;
+			case 'corollary':
+				textWrapper.innerText = 'Korollaari.';
+			break;
+			case 'definition':
+				textWrapper.innerText = 'Määritelmä.';
+			break;
+			case 'example':
+				textWrapper.innerText = 'Esimerkki.';
+			break;
+			case 'exercise':
+				textWrapper.innerText = 'Tehtävä.';
+			break;
+			case 'lemma':
+				textWrapper.innerText = 'Lemma.';
+			break;
+			case 'proof':
+				textWrapper.innerText = 'Todistus.';
+			break;
+			case 'remark':
+				textWrapper.innerText = 'Huomio.';
+			break;
+			case 'summary':
+				textWrapper.innerText = 'Tiivistelmä.';
+			break;
 			case 'theorem':
-				if ( this.getAttribute('theorem-number') ) {
-					let numberContainer = document.createElement('span');
-					numberContainer.textContent = this.getAttribute('theorem-number');
-					numberContainer.style.fontWeight = 'bold';
-					
-					this.insertAdjacentElement('afterbegin', numberContainer);
-				}
+				textWrapper.innerText = 'Lause.';
 			break;
 			default:
+		}
+		
+		if (this.getAttribute('alt-name')) {
+			textWrapper.innerText = this.getAttribute('alt-name');
+		}
+		
+		if (textWrapper.innerText) {
+			this.prepend(textWrapper);
 		}
 	}
 	
@@ -350,7 +455,7 @@ function codeExtractor(container, ba) {
 			}
 			else {
 				iterationNumber++;
-				codeExtractor(e, ba) 										//<-- Recursion
+				codeExtractor(e, ba) 					//<-- Recursion
 			}
 		}
 	});
