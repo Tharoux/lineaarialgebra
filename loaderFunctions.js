@@ -2,9 +2,28 @@
 //headeriin. Tuetut tiedostot:
 //	- javascript
 //	- css
-function addFile(fileID, fileName, fileType) {
+function addFile(fileName, fileType) {
+	
+	let fileUrl = 'https://Tharoux.github.io/lineaarialgebra/'
+	
+	switch (fileName) {
+		case 'mainFunctionality':
+			fileUrl += 'mainFunctionality.js';
+		break;
+		case 'mainStyle':
+			fileUrl += 'mainStyle.css';
+		break;
+		case 'matlab':
+			fileUrl += 'matlab.js';
+		break;
+		case 'matlabStyle':
+			fileUrl += 'matlabStyle.css';
+		break;
+	}
 	
 	let tagType;
+	
+	fileType = fileType.toLowerCase();
 	
 	switch (fileType) {
 		case 'js':
@@ -26,17 +45,6 @@ function addFile(fileID, fileName, fileType) {
 			return;
 		}
 	}
-	
-	fileType = fileType.toLowerCase();
-	
-	let linkText = 'https://digicampus.fi/pluginfile.php/'
-		+ fileID
-		+ '/mod_resource/content/'
-		+ Number.MAX_VALUE
-		+ '/'
-		+ fileName
-		+ '.'
-		+ fileType;
 		
 	let file;
 		
@@ -44,14 +52,14 @@ function addFile(fileID, fileName, fileType) {
 		case 'js':
 			let scriptElement = document.createElement('script');
 			scriptElement.type = 'text/javascript';
-			scriptElement.src = linkText;
+			scriptElement.src = fileUrl;
 			file = scriptElement;
 		break;
 		case 'css':
 			let linkElement = document.createElement('link');
 			linkElement.type = 'text/css';
 			linkElement.rel = 'stylesheet';
-			linkElement.href = linkText;
+			linkElement.href = fileUrl;
 			file = linkElement;
 		break;
 		default:
@@ -63,7 +71,11 @@ function addFile(fileID, fileName, fileType) {
 	console.log(fileName + '.' + fileType + ' loaded successfully');
 }
 
-addFile(815905, 'mainFunctionality', 'js');
-addFile(815906, 'mainStyle', 'css');
-addFile(815228, 'matlab', 'js');
-addFile(814392, 'matlabStyle', 'css');
+;(function () {
+	document.addEventListener('DOMContentLoaded', function() {
+		addFile('mainFunctionality', 'js');
+		addFile('mainStyle', 'css');
+		addFile('matlab', 'js');
+		addFile('matlabStyle', 'css');
+	});
+})()
