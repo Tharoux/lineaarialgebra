@@ -4,7 +4,7 @@
 	border-width: 1px;
 	border-color: #b3b3b3;
 	background: #f2f2f2;
-	padding: 1em;					/*This is the base; used conversion 10px = 1em = 2%*/
+	padding: 2% 6% 2% 2%;		/*This is the base; used conversion 10px = 1em = 2%*/
 	margin-bottom: 20px;
 	width: 90%;
 	font-family: Courier New;
