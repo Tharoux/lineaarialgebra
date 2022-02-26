@@ -111,6 +111,7 @@
 .uef-proof {
 	display: block;
 	border: none;
+	max-width: unset;
 	width: auto;
 	/*border-left: 3px solid khaki;*/
 	border-left: 3px solid #fcf1af;
