@@ -19,6 +19,12 @@ function addFile(fileName, fileType) {
 		case 'matlabStyle':
 			fileUrl += 'matlabStyle.css';
 		break;
+		case 'errorTracker':
+			fileUrl += 'errorTracker.js';
+		break;
+		case 'errorStyle':
+			fileUrl += 'errorStyle.css'
+		break;
 	}
 	
 	let tagType;
@@ -77,5 +83,7 @@ function addFile(fileName, fileType) {
 		addFile('mainStyle', 'css');
 		addFile('matlab', 'js');
 		addFile('matlabStyle', 'css');
+		addFile('errorTracker', 'js');
+		addFile('errorStyle', 'css');
 	});
 })()
