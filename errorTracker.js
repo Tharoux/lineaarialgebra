@@ -1,5 +1,7 @@
 function jaxMathError() {
+	console.log('function activated');
 	window.addEventListener('load', e => {
+		console.log('window activated');
 		let error 
 			= (document.getElementsByClassName('MathJax_Error').length > 0) 
 			? true 
