@@ -58,6 +58,7 @@ function jaxMathError(id, type) {
 			for (const record of mutationRecord) {
 				if (record.type == 'childList') {
 					for (const child of record.target.childNodes) {
+						console.log(child);
 						if (child.className == 'nolink' && 
 							!document.getElementsByClassName('jax-error')) {
 							document.body.appendChild(errorBox);
