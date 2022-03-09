@@ -1,10 +1,16 @@
-function jaxMathError() {
+function jaxMathError(id, type) {
 	window.addEventListener('load', e => {
 		
 		let error 
-				= (document.getElementsByClassName('MathJax_Error').length > 0) 
+				= (document.getElementsByClassName(id).length > 0) 
 				? true 
 				: false;
+		
+		if (type == 'tag') {
+			error = (document.getElementsByTagName(id).length > 0)
+			? true
+			: false;
+		}
 		
 		let errorMessage = document.createElement('span');
 		errorMessage.classList.add('error-msg');
@@ -37,6 +43,7 @@ function jaxMathError() {
 		const config = {attributes: true, childList: true, subtree: true}
 
 		const callback = function(mutationsList, observer) {
+			console.log(mutationsList);
 			if (error) {	
 				document.body.appendChild(errorBox);
 			}
@@ -49,7 +56,16 @@ function jaxMathError() {
 				if (error) {
 					console.info('MathJax errors are now observed');
 				}
-				document.querySelectorAll('[class*="MathJax"]').forEach(o => {
+				let searchString;
+				switch (type) {
+					case 'attribute':
+						searchString = `[class*='${id}']`;
+					break;
+					case 'tag':
+						searchString = `${id}`;
+					break;
+				}
+				document.querySelectorAll(searchString).forEach(o => {
 					
 					var observer = new MutationObserver(callback);
 					observers.push(observer);
@@ -57,19 +73,20 @@ function jaxMathError() {
 					observer.observe(o, config);
 				})
 			}
-		, 30000);
+		, 1);
 		
-		setTimeout(
-			function() {
-				if (error) {
-					console.info('MathJax errors are no longer observed');
-				}
-				observers.forEach(o => {
-					o.disconnect();
-				});
-			}
-		, 150000);
+		// setTimeout(
+			// function() {
+				// if (error) {
+					// console.info('MathJax errors are no longer observed');
+				// }
+				// observers.forEach(o => {
+					// o.disconnect();
+				// });
+			// }
+		// , 120000);
 	});
 }
 
-jaxMathError();
+jaxMathError('nolink', 'attribute');
+jaxMathError('mjx-container', 'tag');
