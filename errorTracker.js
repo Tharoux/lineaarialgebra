@@ -57,7 +57,7 @@ function jaxMathError() {
 					observer.observe(o, config);
 				})
 			}
-		, 1500);
+		, 20000);
 		
 		setTimeout(
 			function() {
