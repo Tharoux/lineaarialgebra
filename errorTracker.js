@@ -40,12 +40,35 @@ function jaxMathError(id, type) {
 		});
 		errorBox.append(errorContainer);
 		
+		let searchString;
+		switch (type) {
+			case 'attribute':
+				searchString = `[class*='${id}']`;
+			break;
+			case 'tag':
+				searchString = `${id}`;
+			break;
+		}
+		
 		const config = {attributes: true, childList: true, subtree: true}
 
-		const callback = function(mutationsList, observer) {
-			console.log(mutationsList);
-			if (error) {	
-				document.body.appendChild(errorBox);
+		const callback = function(mutationRecord, observer) {
+			// console.log(mutationRecord);
+			
+			for (const record of mutationRecord) {
+				if (record.type == 'childList') {
+					for (const child of record.target.childNodes) {
+						if (child.className == 'nolink' && 
+							!document.getElementsByClassName('jax-error')) {
+							document.body.appendChild(errorBox);
+						}
+						
+						if (child.tagName == 'MJX-CONTAINER' && 
+							!document.getElementsByClassName('jax-error')) {
+							document.body.appendChild(errorBox);
+						}
+					}
+				}
 			}
 		}
 		
@@ -55,15 +78,6 @@ function jaxMathError(id, type) {
 			function() {
 				if (error) {
 					console.info('MathJax errors are now observed');
-				}
-				let searchString;
-				switch (type) {
-					case 'attribute':
-						searchString = `[class*='${id}']`;
-					break;
-					case 'tag':
-						searchString = `${id}`;
-					break;
 				}
 				document.querySelectorAll(searchString).forEach(o => {
 					
