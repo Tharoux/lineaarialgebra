@@ -86,9 +86,11 @@ function jaxMathError(id, type) {
 					
 					// observer.observe(o, config);
 				// })
-				console.log(document.querySelectorAll('[class*="MathJax_Error"]'));
+				if (document.querySelectorAll('[class*="MathJax_Error"]')) {
+					document.body.appendChild(errorBox);
+				}
 			}
-		, 40000);
+		, 25000);
 		
 		// setTimeout(
 			// function() {
