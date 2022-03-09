@@ -76,16 +76,17 @@ function jaxMathError(id, type) {
 		
 		setTimeout(
 			function() {
-				if (error) {
-					console.info('MathJax errors are now observed');
-				}
-				document.querySelectorAll(searchString).forEach(o => {
+				// if (error) {
+					// console.info('MathJax errors are now observed');
+				// }
+				// document.querySelectorAll(searchString).forEach(o => {
 					
-					var observer = new MutationObserver(callback);
-					observers.push(observer);
+					// var observer = new MutationObserver(callback);
+					// observers.push(observer);
 					
-					observer.observe(o, config);
-				})
+					// observer.observe(o, config);
+				// })
+				console.log(document.querySelectorAll('[class*="MathJax_Error"]'));
 			}
 		, 1);
 		
