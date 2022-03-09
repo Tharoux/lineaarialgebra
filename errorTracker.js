@@ -57,7 +57,7 @@ function jaxMathError() {
 					observer.observe(o, config);
 				})
 			}
-		, 20000);
+		, 30000);
 		
 		setTimeout(
 			function() {
@@ -68,7 +68,7 @@ function jaxMathError() {
 					o.disconnect();
 				});
 			}
-		, 120000);
+		, 150000);
 	});
 }
 
