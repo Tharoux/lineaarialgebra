@@ -1,6 +1,8 @@
 function jaxMathError() {
+	let start = new Date().getTime();
 	window.addEventListener('load', e => {
-		setTimeout(
+		let end = new Date().getTime();
+		while(end - start < 120000) {
 			let error 
 				= (document.getElementsByClassName('MathJax_Error').length > 0) 
 				? true 
@@ -36,7 +38,7 @@ function jaxMathError() {
 				
 				document.body.appendChild(errorBox);
 			}
-		, 120000)
+		}
 	});
 }
 
