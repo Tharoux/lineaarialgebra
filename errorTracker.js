@@ -88,7 +88,7 @@ function jaxMathError(id, type) {
 				// })
 				console.log(document.querySelectorAll('[class*="MathJax_Error"]'));
 			}
-		, 1);
+		, 40000);
 		
 		// setTimeout(
 			// function() {
