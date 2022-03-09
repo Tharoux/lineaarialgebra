@@ -86,12 +86,12 @@ function jaxMathError(id, type) {
 					
 					// observer.observe(o, config);
 				// })
+				console.info('Checking for MathJax errors...');
 				if (document.querySelectorAll('[class*="MathJax_Error"]').length > 0) {
-					console.log(document.querySelectorAll('[class="MathJax_Error"]'));
 					document.body.appendChild(errorBox);
 				}
 			}
-		, 25);
+		, 25000);
 		
 		// setTimeout(
 			// function() {
