@@ -74,7 +74,7 @@ function addFile(fileName, fileType) {
 
 	document.head.appendChild(file);
 	
-	console.log(fileName + '.' + fileType + ' loaded successfully');
+	console.info(fileName + '.' + fileType + ' loaded successfully');
 }
 
 ;(function () {
