@@ -2,7 +2,7 @@ function jaxMathError() {
 	let start = new Date().getTime();
 	window.addEventListener('load', e => {
 		let end = new Date().getTime();
-		while(end - start < 120000) {
+		while(false) {
 			let error 
 				= (document.getElementsByClassName('MathJax_Error').length > 0) 
 				? true 
