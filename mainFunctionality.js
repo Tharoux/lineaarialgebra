@@ -90,6 +90,7 @@ class FancyList extends HTMLElement {
 		window.addEventListener('load', e => {
 
 			let maxWidth = 30, elementWidth;		//There's a CSS margin-right: 10px in mainStyle.css
+			let minHeight = 20, elementHeight;
 			let listItems = this.querySelectorAll(`f-li[parent-id = '${this.id}']`);
 			
 			listItems.forEach(e => {
@@ -111,11 +112,21 @@ class FancyList extends HTMLElement {
 			
 			for (const elem of counterBoxes) {
 				elementWidth = elem.getBoundingClientRect().width;
+				elementHeight = elem.getBoundingClientRect().height;
 				if (elementWidth > maxWidth) { maxWidth = elementWidth; }
+				if (elementHeight > minHeight) { minHeight = elementHeight; }
 			}
 			
 			for (const elem of counterBoxes) {
 				elem.style.minWidth = maxWidth + 'px';
+				elem.style.height = minHeight + 'px';
+				elem.style.lineHeight = minHeight + 'px';
+			}
+			
+			let listWrappers = this.getElementsByClassName('list-wrapper');
+			
+			for (const elem of listWrappers) {
+				elem.style.lineHeight = minHeight + 'px';
 			}
 		});
 	}
