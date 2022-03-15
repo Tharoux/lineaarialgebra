@@ -55,6 +55,8 @@
 	min-width: 20px;
 	margin-right: 10px;
 	text-align: right;
+	height: 25px;
+	line-height: 25px;
 }
 
 .uef-definition {
@@ -94,6 +96,8 @@
 	-webkit-hyphens: auto;
 	hyphens: auto;
 	text-align: justify;
+	margin: auto;
+	line-height: 25px;
 }
 
 .uef-proof {
@@ -202,6 +206,7 @@ f-li {
 	margin: 5px 5px 5px 0px;
 	/*margin-left: 40px;*/
 	text-align: left;
+	min-height: 25px;
 }
 
 special-box {
