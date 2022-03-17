@@ -40,39 +40,39 @@
 		});
 		errorBox.append(errorContainer);
 		
-		let searchString;
-		switch (type) {
-			case 'attribute':
-				searchString = `[class*='${id}']`;
-			break;
-			case 'tag':
-				searchString = `${id}`;
-			break;
-		}
+		// let searchString;
+		// switch (type) {
+			// case 'attribute':
+				// searchString = `[class*='${id}']`;
+			// break;
+			// case 'tag':
+				// searchString = `${id}`;
+			// break;
+		// }
 		
-		const config = {attributes: true, childList: true, subtree: true}
+		// const config = {attributes: true, childList: true, subtree: true}
 
-		const callback = function(mutationRecord, observer) {
-			// console.log(mutationRecord);
+		// const callback = function(mutationRecord, observer) {
+			// // console.log(mutationRecord);
 			
-			for (const record of mutationRecord) {
-				if (record.type == 'childList') {
-					for (const child of record.target.childNodes) {
-						if (child.className == 'MathJax_Error' && 
-							!document.getElementsByClassName('jax-error')) {
-							document.body.appendChild(errorBox);
-						}
+			// for (const record of mutationRecord) {
+				// if (record.type == 'childList') {
+					// for (const child of record.target.childNodes) {
+						// if (child.className == 'MathJax_Error' && 
+							// !document.getElementsByClassName('jax-error')) {
+							// document.body.appendChild(errorBox);
+						// }
 						
-						if (child.tagName == 'MJX-CONTAINER' && 
-							!document.getElementsByClassName('jax-error')) {
-							document.body.appendChild(errorBox);
-						}
-					}
-				}
-			}
-		}
+						// if (child.tagName == 'MJX-CONTAINER' && 
+							// !document.getElementsByClassName('jax-error')) {
+							// document.body.appendChild(errorBox);
+						// }
+					// }
+				// }
+			// }
+		// }
 		
-		const observers = [];
+		// const observers = [];
 		
 		setTimeout(
 			function() {
@@ -102,7 +102,7 @@
 					document.body.appendChild(errorBox);
 				}
 			}
-		, 20000);
+		, 20);
 	});
 })();
 
@@ -111,9 +111,15 @@ function fontsOnPage() {
 	let fonts = [];
 	
 	for (var i = 0; i < nodes.length; i++) {
-		if (typeof (ff = nodes.item(i).style.fontFamily) == 'string') {
+		
+		if (typeof (
+				ff = nodes.item(i).style.fontFamily 
+				|| window.getComputedStyle(nodes.item(i)).getPropertyValue('font-family')
+				|| window.getComputedStyle(nodes.item(i), '::before').getPropertyValue('font-family')
+				|| window.getComputedStyle(nodes.item(i), '::after').getPropertyValue('font-family')
+			) == 'string') {
 			if (!fonts.includes(ff) && ff != '') {
-				fonts.push(nodes.item(i).style.fontFamily);
+				fonts.push(ff);
 			}
 		}
 	}
