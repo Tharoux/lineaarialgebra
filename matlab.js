@@ -177,12 +177,17 @@ class MatlabMatrix extends HTMLElement {
 				let leftWrap = document.createElement('div');
 				leftWrap.append(matrixSize);
 				
+				let factorWrap = document.createElement('div');
+				factorWrap.style.fontSize = '15px';
+				factorWrap.style.marginTop = '0.5em';
+				factorWrap.textContent = '\\(' + this.getAttribute('factor') + '\\ \\times \\)';
+				
 				let rightWrap = document.createElement('div');
 				rightWrap.append(constructedMatrices[i]);
 				
 				let wrapper = document.createElement('div');
 				wrapper.classList.add('flex-ver');
-				wrapper.append(leftWrap, rightWrap);
+				wrapper.append(leftWrap, factorWrap, rightWrap);
 				
 				matrixNameArray[i] = wrapper;
 			})
