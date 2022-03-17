@@ -102,7 +102,7 @@
 					document.body.appendChild(errorBox);
 				}
 			}
-		, 20);
+		, 20000);
 	});
 })();
 
