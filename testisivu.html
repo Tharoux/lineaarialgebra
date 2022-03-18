@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		
+		<link rel='stylesheet' href='./matlabStyle.css'>
+		<link rel='stylesheet' href='./mainStyle.css'>
+		<link rel='stylesheet' href='./errorStyle.css'>
+		<script type='text/javascript' src='./errorTracker.js'></script>
+		<script type='text/javascript' src='./matlab.js'></script>
+		<script type='text/javascript' src='./mainFunctionality.js'></script>
+		
+		<!-- <script type='text/javascript' src='./loaderFunctions.js'></script> -->
+		<!--<script type='text/javascript' src='./allJavascript.js'></script>-->
+		
+		<!--MathJax-->
+		<script src='https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
+		<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+	</head>
+	<body>
+		<p>Tässä alla on custom element</p>
+		<!-- <div class='MathJax_Error' test-attr='1'>asdasd</div> -->
+		<article-content>
+		<matlab-output>
+			<matlab-matrix matrix-name='M' factor='10^{-12}' matrix='[1,2;3,4]'></matlab-matrix>
+			<matlab-matrix matrix-name='M' matrix='[1,2;3,4]'></matlab-matrix>
+		</matlab-output>
+		<f-list item-type='(i)'>
+			<f-li>
+				\(\overline{a}+\overline{b}=\overline{c}\)
+				<br>
+				Tässä mennään toiselle rivillekin...
+			</f-li>
+			<f-li>\(\overline{a}+\overline{e}=\overline{c}\)</f-li>
+			<f-li>\(\overline{a}+\overline{0} = \overline{c}\)</f-li>
+			<f-list item-cycle='- + /'>
+				<f-li>Syklinen</f-li>
+				<f-list>
+					<f-li>Syklinen</f-li>
+					<f-list item-type='/a/'>
+						<f-li>Ei-syklinen</f-li>
+						<f-li>Ei-syklinen</f-li>
+						<f-li>Ei-syklinen</f-li>
+					</f-list>
+					<f-li>Syklinen</f-li>
+					<f-li>Syklinen</f-li>
+				</f-list>
+				<f-li>Syklinen</f-li>
+				<f-li>Syklinen</f-li>
+			</f-list>
+			<f-li>testi</f-li>
+			<f-li>testi</f-li>
+		</f-list>
+		
+		<f-list item-cycle='- < >'>
+			<f-li>testi</f-li>
+			<f-list item-type='(i)'>
+				<f-li>Sisempi</f-li>
+				<f-list>
+					<f-li>Toimiiko sykli?</f-li>
+					<f-li>Toimiiko sykli?</f-li>
+					<f-li>Toimiiko sykli?</f-li>
+				</f-list>
+				<f-li>Sisempi</f-li>
+				<f-li>Sisempi</f-li>
+			</f-list>
+			<f-li>testi</f-li>
+			<f-li>testi</f-li>
+			<f-li>testi</f-li>
+		</f-list>
+		
+		<f-list item-cycle='< > &#9734;'>
+			<f-li>Tämän listan merkit ovat syklisiä: <, >, &#9734;</f-li>
+			<f-li>Tähän tulee toinen lista alle.</f-li>
+				<f-list>
+					<f-li>Tämä on se toinen lista.</f-li>
+					<f-li>Tämä on se toinen lista.</f-li>
+						<f-list>
+							<f-li>Tämä on kolmas lista.</f-li>
+							<f-list>
+								<f-li>Tämä on neljäs lista.</f-li>
+								<f-li>Tämä on neljäs lista.</f-li>
+								<f-li>Tämä on neljäs lista.</f-li>
+							</f-list>
+							<f-li>Tämä on kolmas lista.</f-li>
+						</f-list>
+					<f-li>Tämä on se toinen lista.</f-li>
+					<f-li>Tämä on se toinen lista.</f-li>
+				</f-list>
+			<f-li>Tässä lisää listaa ensimmäisessä listassa</f-li>
+		</f-list>
+		<f-list>
+			<f-li>Tässä listassa ei ole määritelty sykliä.</f-li>
+			<f-li>Oletussykli on 1, a, i</f-li>
+			<f-list>
+				<f-li>Toinen lista.</f-li>
+				<f-li>Toinen lista.</f-li>
+				<f-li>Toinen lista.</f-li>
+				<f-list>
+					<f-li>Kolmas lista.</f-li>
+					<f-li>Kolmas lista.</f-li>
+				</f-list>
+				<f-li>Toinen lista.</f-li>
+			</f-list>
+			<f-li>Ensimmäinen lista.</f-li>
+		</f-list>
+		<textarea></textarea>
+		<matlab-code>
+			<matlab-syms syms='x y z'></matlab-syms>
+			sum = 0;
+			<matlab-function function-name='for' function-inline='i = 0:10'>
+				<matlab-comment multiline='true'>
+					Tämä on multiline<br>
+					matlabtyylinen<br>
+					kommentti
+				</matlab-comment>
+				<matlab-function function-name='if' function-inline='(i < 5 || i%2=0)'>
+					<matlab-function function-name='myFunction'>
+						<matlab-tab>
+							<matlab-comment>
+								Funktion toiminta
+							</matlab-comment>
+							<matlab-function function-name='functionInTab' function-inline='variables'>
+								<matlab-tab>
+									<matlab-comment>
+										Funktion toiminta
+									</matlab-comment>
+								</matlab-tab>
+							</matlab-function>
+						</matlab-tab>
+					</matlab-function>
+					<matlab-tab>
+					sum += i;
+					<matlab-comment>
+					Tämä on ihan tavallinen matlab-kommentti
+					</matlab-comment><br>
+					<matlab-comment>
+					Tämä on piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiitkä kommentti
+					</matlab-comment>
+					</matlab-tab>
+				</matlab-function>				
+			</matlab-function>
+			sum
+		</matlab-code>
+		<matlab-output>
+			Tämä on matlab-output ympäristö eli se minkä Matlab antaa ulos:
+			<matlab-matrix matrix-name='M, N' matrix='[a, b; c, d] [a + b, f, 1; g, h, 2]'></matlab-matrix>
+			Matriisit voi myös jättää nimeämättä:
+			<matlab-matrix matrix='[a, b; c, d] [a + b, f; g, h; i, j]'></matlab-matrix>
+			Matriisit voivat olla juuri niin villejä kuin niistä tekee:
+			<matlab-matrix matrix='[a, b, c; d, e; f, g, h, i]'></matlab-matrix>
+		</matlab-output>
+		
+		<special-box box-type='corollary'>
+			Teksti laatikon sisällä.
+		</special-box>
+		<special-box box-type='definition'>
+			Teksti laatikon sisällä.
+		</special-box>
+		<special-box box-type='lemma'>
+			Teksti laatikon sisällä.
+		</special-box>
+		<special-box box-type='remark'>
+			Teksti laatikon sisällä.
+		</special-box>
+		<special-box box-type='summary'>
+			Teksti laatikon sisällä.
+		</special-box>
+		<special-box box-type='theorem' theorem-number='1.1.1'>
+			Teksti laatikon sisällä. (theorem-number)
+		</special-box>
+		<special-box box-type='theorem' number='1.1.1'>
+			Teksti laatikon sisällä. (number)
+		</special-box>
+		<special-box box-type='theorem' alt-name='Erikoislause 1.1.1'>
+			Teksti laatikon sisällä. (alt-name)
+		</special-box>
+		<special-box box-type='theorem'>
+			Teksti laatikon sisällä.
+		</special-box>
+		<special-box box-type='proof'>
+			Turnitin-lisäosa plagiaatin tarkistamiseksi on nyt käytettävissä Digicampuksessa 
+			/ Turnitin-tool for plagiarism check is now available on Digicampus.
+		</special-box>
+		<special-box box-type='exercise' number='1.2.3'>
+			Teksti laatikon sisällä.
+			<special-box box-type='solution'>
+				<special-box box-type='solution-byhand'>
+					Käsin ratkaistu 1.
+				</special-box>
+				<special-box box-type='solution-byhand'>
+					Käsin ratkaistu 2.
+				</special-box>
+				<special-box box-type='solution-bymatlab'>
+					<matlab-code>
+			<matlab-syms syms='x, y, z'></matlab-syms>
+			sum = 0;
+			<matlab-function function-name='for' function-inline='i = 0:10'>
+				<matlab-comment multiline='true'>
+					Tämä on multiline<br>
+					matlabtyylinen<br>
+					kommentti
+				</matlab-comment>
+				<matlab-function function-name='if' function-inline='(i < 5 || i%2=0)'>
+					<matlab-function function-name='myFunction'>
+						<matlab-tab>
+							<matlab-comment>
+								Funktion toiminta
+							</matlab-comment>
+							<matlab-function function-name='functionInTab' function-inline='variables'>
+								<matlab-tab>
+									<matlab-comment>
+										Funktion toiminta
+									</matlab-comment>
+								</matlab-tab>
+							</matlab-function>
+						</matlab-tab>
+					</matlab-function>
+					<matlab-tab>
+					sum += i;
+					<matlab-comment>
+					Tämä on ihan tavallinen matlab-kommentti
+					</matlab-comment><br>
+					<matlab-comment>
+					Tämä on piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiitkä kommentti
+					</matlab-comment>
+					</matlab-tab>
+				</matlab-function>				
+			</matlab-function>
+			sum
+		</matlab-code>
+				</special-box>
+			</special-box>
+			<special-box box-type='solution'>
+				<special-box box-type='solution-byhand'>
+					Käsin ratkaistu.
+				</special-box>
+			</special-box>
+		</special-box>
+		<special-box box-type='example'>
+			Teksti laatikon sisällä.
+		</special-box>
+		
+		Tässä on <imp-term>imp-term tag</imp-term>, jota voi käyttää tärkeiden termien korostamiseen.
+		
+		<special-box box-type='example'>
+			<special-box box-type='solution'>
+				<special-box box-type='solution-byhand'>
+					<f-list item-type='(a)'>
+						<f-li>
+							Kirjoitetaan matriisien koot
+								$$
+									\underbrace{\underbrace{A}_{3\times 4}\quad
+									\underbrace{D}_{4\times 2}}_{\textrm{OK, } 4=4}\quad
+									\underbrace{B}_{2\times 4}
+									=
+									\underbrace{\underbrace{AD}_{3\times 2}\quad
+									\underbrace{B}_{2\times 4}}_{\textrm{OK, } 2=2}
+									=\underbrace{ADB}_{3\times 4}.
+								$$
+							Matriisitulo on liitännäinen, joten tekijät voidaan ryhmitellä toisinkin
+								$$
+									\underbrace{A}_{3\times 4}\quad
+									\underbrace{\underbrace{D}_{4\times 2}\quad
+									\underbrace{B}_{2\times 4}}_{\textrm{OK, } 2=2}
+									=\underbrace{\underbrace{A}_{3\times 4}\quad
+									\underbrace{DB}_{4\times 4}}_{\textrm{OK, }4=4}
+									=\underbrace{ADB}_{3\times 4}.
+								$$
+							Matriisitulon laskeminen on sitä työläämpää, mitä suurempia matriisit ovat. 
+							Sen vuoksi jälkimmäisessä laskussa välivaiheena muodostuva kokoa \(4\times 4\) 
+							oleva matriisi \(DB\) on laskujen kannalta epäedullinen. 
+						</f-li>
+						<f-li>
+							Kirjoitetaan matriisien koot
+								$$
+									\underbrace{\underbrace{D}_{4\times 2}\quad
+									\underbrace{C}_{3\times 4}}_{\textrm{EI OK, }2\neq 3}.
+								$$
+						</f-li>
+						<f-li>
+							Matriisin \(A\in\mathbb{R}^ {3\times 4}\) transpoosi on \(A^T\in\mathbb{R}^{4\times 3}\). Siis
+								$$
+									\underbrace{\underbrace{A^T}_{4\times 3}\quad
+									\underbrace{A}_{3\times 4}}_{\textrm{OK, }3=3}
+								$$
+							on määritelty ja \((A^TA)\in\mathbb{R}^{4\times 4}\). Nyt
+								$$
+									\underbrace{\underbrace{A^TA}_{4\times 4}\quad
+									\underbrace{D}_{4\times 2}}_{\textrm{OK, }4=4}
+									=\underbrace{A^TAD}_{4\times 2}.
+								$$
+						</f-li>
+					</f-list>
+				</special-box>
+			</special-box>
+		</special-box>
+		<f-list>
+			<f-li>Default</f-li>
+			<f-li>Default</f-li>
+		</f-list>
+		<f-list item-type='a...'>
+			<f-li>Pienet aakkoset</f-li>
+			<f-li>Pienet aakkoset</f-li>
+		</f-list>
+		<f-list item-type='A)))))))))))'>
+			<f-li>Isot aakkoset<br>Ja rivin vaihto<br>Ja toinen mokoma</f-li>
+			<f-li>
+				Isot aakkoset<br>Ja rivin vaihto<br>Ja toinen mokoma
+				\[
+					MathJax
+				\]
+			</f-li>
+			<f-li>
+				Isot aakkoset<br>Ja rivin vaihto<br>Ja toinen mokoma
+				\[
+					MathJax
+				\]
+				Tekstiä MathJaxin jälkeen.
+			</f-li>
+			<f-li>
+				Isot aakkoset<br>Ja rivin vaihto<br>Ja toinen mokoma
+				\[
+					MathJax
+				\]
+				
+			</f-li>
+		</f-list>
+		<f-list item-type='(((((i.....'>
+			<f-li>Pienet roomalaiset<br>Ja rivin vaihto<br>Ja toinen mokoma</f-li>
+			<f-li>Pienet roomalaiset<br>Ja rivin vaihto<br>Ja toinen mokoma</f-li>
+		</f-list>
+		<f-list item-type='I'>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+			<f-li>Isot roomalaiset</f-li>
+		</f-list>
+		</article-content>
+		<p>Tässä yllä on custom element</p>
+
+	</body>
+</html>
