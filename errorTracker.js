@@ -36,8 +36,6 @@
 				let MathJaxPreviews 
 					= Array.from(document.body.querySelectorAll('.MathJax_Preview'));
 				let previewHasChildren = MathJaxPreviews.some(e => e.hasChildNodes());
-				console.log(MathJaxPreviews);
-				console.log(previewHasChildren);
 				
 				let MathJaxFonts = [];
 				fontsOnPage().forEach(e => {
