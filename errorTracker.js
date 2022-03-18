@@ -1,17 +1,6 @@
 ;(function jaxMathError() {
 	window.addEventListener('load', e => {
 		
-		// let error 
-				// = (document.getElementsByClassName(id).length > 0) 
-				// ? true 
-				// : false;
-		
-		// if (type == 'tag') {
-			// error = (document.getElementsByTagName(id).length > 0)
-			// ? true
-			// : false;
-		// }
-		
 		let errorMessage = document.createElement('span');
 		errorMessage.classList.add('error-msg');
 		errorMessage.innerHTML = 'Tapahtui virhe.';
@@ -40,65 +29,23 @@
 		});
 		errorBox.append(errorContainer);
 		
-		// let searchString;
-		// switch (type) {
-			// case 'attribute':
-				// searchString = `[class*='${id}']`;
-			// break;
-			// case 'tag':
-				// searchString = `${id}`;
-			// break;
-		// }
-		
-		// const config = {attributes: true, childList: true, subtree: true}
-
-		// const callback = function(mutationRecord, observer) {
-			// // console.log(mutationRecord);
-			
-			// for (const record of mutationRecord) {
-				// if (record.type == 'childList') {
-					// for (const child of record.target.childNodes) {
-						// if (child.className == 'MathJax_Error' && 
-							// !document.getElementsByClassName('jax-error')) {
-							// document.body.appendChild(errorBox);
-						// }
-						
-						// if (child.tagName == 'MJX-CONTAINER' && 
-							// !document.getElementsByClassName('jax-error')) {
-							// document.body.appendChild(errorBox);
-						// }
-					// }
-				// }
-			// }
-		// }
-		
-		// const observers = [];
-		
 		setTimeout(
 			function() {
-				// if (error) {
-					// console.info('MathJax errors are now observed');
-				// }
-				// document.querySelectorAll(searchString).forEach(o => {
-					
-					// var observer = new MutationObserver(callback);
-					// observers.push(observer);
-					
-					// observer.observe(o, config);
-				// })
 				console.info('Checking for MathJax errors...');
-				// if (document.querySelectorAll('[class*="MathJax_Error"]').length > 0) {
-					// document.body.appendChild(errorBox);
-				// }
-				// console.log(MathJax);
-				// console.log(MathJax.Message.log);
+				
+				let MathJaxPreviews 
+					= Array.from(document.body.querySelectorAll('.MathJax_Preview'));
+				let previewHasChildren = MathJaxPreviews.some(e => e.hasChildNodes());
+				console.log(MathJaxPreviews);
+				console.log(previewHasChildren);
+				
 				let MathJaxFonts = [];
 				fontsOnPage().forEach(e => {
 					if (/MathJax/g.test(e)) {
 						MathJaxFonts.push(e);
 					}
 				});
-				if (MathJaxFonts.length < 1) {
+				if (MathJaxFonts.length < 1 || previewHasChildren) {
 					document.body.appendChild(errorBox);
 				}
 			}
