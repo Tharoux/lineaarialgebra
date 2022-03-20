@@ -184,8 +184,6 @@ class FancyListElement extends HTMLElement {
 				&& this.parentElement.getAttribute('item-decor')) {
 			itemName = this.parentElement.getAttribute('item-name');
 			itemDecorations = this.parentElement.getAttribute('item-decor').split(';');
-		
-			console.log(this, itemName, itemDecorations);
 		}
 		
 		let itemText = itemDecorations[0];
