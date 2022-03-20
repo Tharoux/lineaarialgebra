@@ -90,7 +90,7 @@ class FancyList extends HTMLElement {
 		window.addEventListener('load', e => {
 
 			let maxWidth = 30, elementWidth;		//There's a CSS margin-right: 10px in mainStyle.css
-			let minHeight = 20, elementHeight;
+			let minHeight = 27, elementHeight;
 			let listItems = this.querySelectorAll(`f-li[parent-id = '${this.id}']`);
 			
 			listItems.forEach(e => {
@@ -176,6 +176,16 @@ class FancyListElement extends HTMLElement {
 					
 				});
 			}
+		}
+		
+		// Freely defined list item.
+		// User is responsible.
+		if (this.parentElement.getAttribute('item-name') 
+				&& this.parentElement.getAttribute('item-decor')) {
+			itemName = this.parentElement.getAttribute('item-name');
+			itemDecorations = this.parentElement.getAttribute('item-decor').split(';');
+		
+			console.log(this, itemName, itemDecorations);
 		}
 		
 		let itemText = itemDecorations[0];
