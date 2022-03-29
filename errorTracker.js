@@ -19,11 +19,7 @@
 		copyErrorMessage.classList.add('error-button');
 		copyErrorMessage.innerHTML = 'Kopioi virheviesti';
 		copyErrorMessage.addEventListener('click', e => {
-			let prewchld = Array
-							.from(document
-								.body
-								.querySelectorAll('.MathJax_Preview')
-							).some(e => e.hasChildNodes());
+			let prewchld = Array.from(document.body.querySelectorAll('.MathJax_Preview')).some(e => e.hasChildNodes());
 			let errormsg = fontsOnPage() + '\n\n' + prewchld;
 			navigator.clipboard.writeText(errormsg);
 		});
