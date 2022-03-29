@@ -1,6 +1,5 @@
 ;(function jaxMathError() {
 	window.addEventListener('load', e => {
-		
 		let errorMessage = document.createElement('span');
 		errorMessage.classList.add('error-msg');
 		errorMessage.innerHTML = 'Tapahtui virhe.';
@@ -29,27 +28,40 @@
 		});
 		errorBox.append(errorContainer);
 		
-		setTimeout(
-			function() {
-				console.info('Checking for MathJax errors...');
-				
-				let MathJaxPreviews 
-					= Array.from(document.body.querySelectorAll('.MathJax_Preview'));
-				let previewHasChildren = MathJaxPreviews.some(e => e.hasChildNodes());
-				
-				let MathJaxFonts = [];
-				fontsOnPage().forEach(e => {
-					if (/MathJax/g.test(e)) {
-						MathJaxFonts.push(e);
-					}
-				});
-				if (MathJaxFonts.length < 1 || previewHasChildren) {
-					document.body.appendChild(errorBox);
-				}
-			}
-		, 20000);
+		if (document.visibilityState == 'visible') {
+			return timeout(errorBox);
+		}
+		
+		document.addEventListener('visibilitychange', e => {
+			timeout(errorBox);
+		});
 	});
 })();
+
+function timeout(errorBox) {
+	setTimeout(
+		function() {
+			console.info('Checking for MathJax errors...');
+			
+			let MathJaxPreviews 
+				= Array.from(document.body.querySelectorAll('.MathJax_Preview'));
+			let previewHasChildren = MathJaxPreviews.some(e => e.hasChildNodes());
+			
+			let MathJaxFonts = [];
+			fontsOnPage().forEach(e => {
+				if (/MathJax/g.test(e)
+					|| /MJX/g.test(e)) {
+					MathJaxFonts.push(e);
+				}
+			});
+			if (MathJaxFonts.length < 1 || previewHasChildren) {
+				document.body.appendChild(errorBox);
+				console.error('MathJaxFonts', MathJaxFonts);
+				console.error('previewHasChildren', previewHasChildren);
+			}
+		}
+	, 20000);
+}
 
 function fontsOnPage() {
 	let nodes = document.body.getElementsByTagName('*');
