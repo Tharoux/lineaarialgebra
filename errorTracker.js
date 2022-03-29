@@ -15,9 +15,22 @@
 		});
 		errorUpdate.innerHTML = 'Päivitä sivu';
 		
+		let copyErrorMessage = document.createElement('span');
+		copyErrorMessage.classList.add('error-button');
+		copyErrorMessage.innerHTML = 'Kopioi virheviesti';
+		copyErrorMessage.addEventListener('click', e => {
+			let prewchld = Array
+							.from(document
+								.body
+								.querySelectorAll('.MathJax_Preview')
+							).some(e => e.hasChildNodes());
+			let errormsg = fontsOnPage() + '\n\n' + prewchld;
+			navigator.clipboard.writeText(errormsg);
+		});
+		
 		let errorContainer = document.createElement('div');
 		errorContainer.classList.add('error-container');
-		errorContainer.append(errorMessage, errorUpdate, errorClose);
+		errorContainer.append(errorMessage, errorUpdate, errorClose, copyErrorMessage);
 		
 		let errorBox = document.createElement('div');
 		errorBox.classList.add('jax-error');
