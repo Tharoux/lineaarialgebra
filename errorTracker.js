@@ -58,8 +58,7 @@ function timeout(errorBox) {
 			
 			let MathJaxFonts = [];
 			fontsOnPage().forEach(e => {
-				if (/MathJax/g.test(e)
-					|| /MJX/g.test(e)) {
+				if (/MathJax|MJX|STIX|Latin Modern|Gyre|Asana Math|TeX|Lucida Bright Math/g.test(e)) {
 					MathJaxFonts.push(e);
 				}
 			});
