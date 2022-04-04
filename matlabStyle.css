@@ -6,10 +6,10 @@
 	background: #f2f2f2;
 	padding: 2% 6% 2% 2%;		/*This is the base; used conversion 10px = 1em = 2%*/
 	margin-bottom: 20px;
-	width: 90%;
 	font-family: Courier New;
 	word-wrap: break-word;
 	position: relative;
+	text-align: unset;
 }
 
 .matlab-code-output {
@@ -26,6 +26,8 @@
 .matlab-comment, .matlab-comment-multi {
 	display: inline;
 	color: #228b22;
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 .matlab-comment-multi {
@@ -34,7 +36,6 @@
 
 .matlab-function-block {
 	display: block;
-	width: 90%;
 }
 
 .matlab-function, .matlab-function-end{
@@ -101,7 +102,7 @@
 .matlab-tab-block {
 	display: block;
 	padding-left: 2.5em;
-	width: 90%;
+	text-align: unset;
 }
 
 /*--- ELEMENTS ---*/
