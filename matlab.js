@@ -179,7 +179,10 @@ class MatlabMatrix extends HTMLElement {
 				factorWrap.style.fontSize = '15px';
 				factorWrap.style.marginTop = '0.5em';
 				if (this.getAttribute('factor')) {
-					factorWrap.textContent = '\\(' + this.getAttribute('factor') + '\\ \\times \\)';
+					var factorMatrix = this.getAttribute('factor').split(',');
+					if (factorMatrix[i]) {
+						factorWrap.textContent = '\\(' + factorMatrix[i] + '\\ \\times \\)';
+					}
 				}
 				
 				let rightWrap = document.createElement('div');
