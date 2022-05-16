@@ -80,6 +80,38 @@
 	border-left-style: dashed;
 }
 
+.uef-explainText {
+	display: block;
+	margin-bottom: 20px;
+	padding: 8px; 
+	width: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	word-break: break-word;
+	hyphens: auto;
+	border-radius: 0px 15px 15px 15px;
+	border: 3px solid #9178ba;
+	background-image: linear-gradient(to right, whitesmoke, whitesmoke, #e4ddee);
+}
+
+.uef-explainTitle {
+	display: block;
+	padding: 8px; 
+	max-width: max-content;		/*This is experimental!*/
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	word-break: break-word;
+	hyphens: auto;
+	border-radius: 15px;
+	border: 3px solid #9178ba;
+	background-image: linear-gradient(to right, whitesmoke, whitesmoke, #e4ddee);
+}
+
+.uef-explainTitleWithoutBottom {
+	border-radius: 15px 15px 0px 0px;
+	border-bottom-width: 0px;
+}
+
 .imp-term {
 	display: inline;
 	color: blue;
@@ -114,10 +146,6 @@
 	border-color: #fec7cf;
 	/*background-image: linear-gradient(to right, whitesmoke, whitesmoke, lightcoral);*/
 	background-image: linear-gradient(to right, whitesmoke, whitesmoke, #fec7cf);
-}
-
-.show {
-	display: block;
 }
 
 .uef-solution,
@@ -165,16 +193,19 @@
 	border-color: forestgreen;
 }
 
-.uef-solution-byhand-hidden,
-.uef-solution-bymatlab-hidden {
-	display: none;
-}
-
 .uef-summary { 
 	/*border-color: forestgreen;*/
 	border-color: #b1e1cc;
 	/*background-image: linear-gradient(to right, whitesmoke, whitesmoke, forestgreen);*/
 	background-image: linear-gradient(to right, whitesmoke, whitesmoke, #b1e1cc);
+}
+
+.hidden {
+	display: none;
+}
+
+.show {
+	display: block;
 }
 
 /*--- ELEMENTS ---*/
@@ -209,7 +240,7 @@ f-li {
 	min-height: 25px;
 }
 
-special-box {
+special-box{
 	display: block;
 	margin-left: 40px;
 	margin-top: 20px;

@@ -42,6 +42,35 @@ class CopyButton extends HTMLElement {
 
 customElements.define('copy-button', CopyButton);
 
+class ExplainText extends HTMLElement {
+	render() {
+		this.classList.add('uef-explainText');
+		this.classList.toggle('hidden');
+		
+		let title = this.getAttribute('title');
+		let titleBox = document.createElement('div');
+		titleBox.innerHTML += title;
+		titleBox.classList.add('uef-explainTitle');
+		console.log(titleBox.width);
+		
+		this.parentNode.insertBefore(titleBox, this);
+		
+		titleBox.addEventListener('click', e => {
+			this.classList.toggle('hidden');
+			titleBox.classList.toggle('uef-explainTitleWithoutBottom');
+		});
+	}
+	
+	connectedCallback() {
+		if(!this.rendered) {
+			this.render();
+			this.rendered = true;
+		}
+	}
+}
+
+customElements.define('explain-text', ExplainText);
+
 class FancyList extends HTMLElement {
 	render() {
 		this.setAttribute('listItems', 0);
@@ -516,17 +545,16 @@ function copyCode(container, ba) {
 
 function displayBox(e) {
 	let solutionBox = document.getElementById(e.target.id + '-solution');
-	let solutionBoxClass = solutionBox.getAttribute('class');
 	let buttonText = e.target.textContent;
-
-	if (/-hidden/.test(solutionBoxClass)) {
-		solutionBox.setAttribute('class', solutionBoxClass.replace('-hidden', ''));
-		e.target.textContent = buttonText.replace('Näytä', 'Piilota');
-		
-	} else {
-		solutionBox.setAttribute('class', solutionBoxClass + '-hidden');
+	let solutionBoxClass = solutionBox.classList;
+	solutionBoxClass.toggle('hidden');
+	
+	if (solutionBoxClass.contains('hidden')) {
 		e.target.textContent = buttonText.replace('Piilota', 'Näytä');
+		return
 	}
+	
+	e.target.textContent = buttonText.replace('Näytä', 'Piilota');
 }
 
 function toRoman(n, caps) {
@@ -599,5 +627,5 @@ function solutionSettings(node, method, buttonText, boxType) {
 	solutionButtonBox.appendChild(solutionButton);
 	
 	node.id = solutionButton.id + '-solution';
-	node.classList.replace(boxType, boxType + '-hidden');
+	node.classList.toggle('hidden');
 }
