@@ -44,7 +44,6 @@ customElements.define('copy-button', CopyButton);
 
 class ExplainText extends HTMLElement {
 	render() {
-		if (!document.getElementById(this.id + '-titleBox')) {
 			let d = new Date();
 			console.log(d.getTime());
 			this.classList.add('uef-explainText');
@@ -57,11 +56,11 @@ class ExplainText extends HTMLElement {
 			titleBox.classList.add('uef-explainTitle');
 			titleBox.setAttribute('id', this.id + '-titleBox');
 			
+		if (!document.getElementById(this.id + '-titleBox')) {
 			titleBox.addEventListener('click', e => {
 				this.classList.toggle('hidden');
 				titleBox.classList.toggle('uef-explainTitleWithoutBottom');
 			});
-			
 			this.parentNode.insertBefore(titleBox, this);
 		}
 	}
