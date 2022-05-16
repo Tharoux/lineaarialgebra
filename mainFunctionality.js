@@ -44,6 +44,8 @@ customElements.define('copy-button', CopyButton);
 
 class ExplainText extends HTMLElement {
 	render() {
+		let d = new Date();
+		console.log(d.getTime());
 		this.classList.add('uef-explainText');
 		this.classList.toggle('hidden');
 		
