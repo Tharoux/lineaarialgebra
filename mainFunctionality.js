@@ -56,11 +56,12 @@ class ExplainText extends HTMLElement {
 			titleBox.classList.add('uef-explainTitle');
 			titleBox.setAttribute('id', this.id + '-titleBox');
 			
-		if (!document.getElementById(this.id + '-titleBox')) {
 			titleBox.addEventListener('click', e => {
 				this.classList.toggle('hidden');
 				titleBox.classList.toggle('uef-explainTitleWithoutBottom');
 			});
+			
+		if (!document.getElementById(this.id + '-titleBox')) {
 			this.parentNode.insertBefore(titleBox, this);
 		}
 	}
