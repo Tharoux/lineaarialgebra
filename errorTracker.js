@@ -63,7 +63,7 @@ function timeout(errorBox) {
 				}
 			});
 			
-			if (MathJaxPreviews && (MathJaxFonts.length < 1 || previewHasChildren || MathJax.Hub.lastError)) {
+			if (MathJaxPreviews.length > 0 && (MathJaxFonts.length < 1 || previewHasChildren || MathJax.Hub.lastError)) {
 				document.body.appendChild(errorBox);
 				console.error('MathJaxFonts', MathJaxFonts);
 				console.error('previewHasChildren', previewHasChildren);

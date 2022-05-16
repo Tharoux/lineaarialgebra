@@ -51,7 +51,6 @@ class ExplainText extends HTMLElement {
 		let titleBox = document.createElement('div');
 		titleBox.innerHTML += title;
 		titleBox.classList.add('uef-explainTitle');
-		console.log(titleBox.width);
 		
 		this.parentNode.insertBefore(titleBox, this);
 		
@@ -62,10 +61,12 @@ class ExplainText extends HTMLElement {
 	}
 	
 	connectedCallback() {
+		console.log(this.rendered);
 		if(!this.rendered) {
 			this.render();
 			this.rendered = true;
 		}
+		console.log(this.rendered);
 	}
 }
 
